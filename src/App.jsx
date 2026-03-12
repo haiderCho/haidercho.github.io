@@ -6,8 +6,9 @@ import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
+import TechStack from './pages/TechStack';
 
-const pages = ['About', 'Resume', 'Portfolio', 'Blog', 'Contact', 'Gallery'];
+const pages = ['About', 'Resume', 'Tech Stack', 'Portfolio', 'Blog', 'Contact', 'Gallery'];
 
 export default function App() {
   const [activePage, setActivePage] = useState('About');
@@ -20,6 +21,7 @@ export default function App() {
       case 'Blog': return <Blog />;
       case 'Contact': return <Contact />;
       case 'Gallery': return <Gallery />;
+      case 'Tech Stack': return <TechStack />;
       default: return <About />;
     }
   };
@@ -39,7 +41,9 @@ export default function App() {
             </button>
           ))}
         </nav>
-        {renderPage()}
+        <div key={activePage} className="animate-enter">
+          {renderPage()}
+        </div>
         <footer className="footer">
           © 2026 Nafiz Haider Chowdhury | All Rights Reserved
         </footer>

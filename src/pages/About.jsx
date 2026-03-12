@@ -48,7 +48,7 @@ export default function About() {
           <line x1="8" y1="21" x2="16" y2="21" />
           <line x1="12" y1="17" x2="12" y2="21" />
         </svg>
-        Featured Portfolios
+        Featured Projects
       </div>
       <p className="section-subtext">A glimpse into my professional journey.</p>
 
@@ -56,29 +56,29 @@ export default function About() {
         <a className="project-card" href="https://github.com/haiderCho/Resume-JRS" target="_blank" rel="noopener noreferrer">
           <img
             src="https://opengraph.githubassets.com/1/haiderCho/Resume-JRS"
-            alt="Resume-JRS"
+            alt="Resume"
             className="project-card-image"
           />
           <div className="project-card-body">
             <div className="project-card-url">github.com/haiderCho/Resume-JRS</div>
-            <div className="project-card-title">Resume-JRS</div>
+            <div className="project-card-title">Resume</div>
             <div className="project-card-desc">
               Hybrid search engine for job recommendations using semantic matching, skill taxonomy, and ensemble scoring.
             </div>
           </div>
         </a>
 
-        <a className="project-card" href="https://github.com/haiderCho/MediaSage" target="_blank" rel="noopener noreferrer">
+        <a className="project-card" href="https://github.com/haiderCho/AgroSense" target="_blank" rel="noopener noreferrer">
           <img
-            src="https://opengraph.githubassets.com/1/haiderCho/MediaSage"
-            alt="MediaSage"
+            src="https://opengraph.githubassets.com/1/haiderCho/AgroSense"
+            alt="AgroSense"
             className="project-card-image"
           />
           <div className="project-card-body">
-            <div className="project-card-url">github.com/haiderCho/MediaSage</div>
-            <div className="project-card-title">MediaSage</div>
+            <div className="project-card-url">github.com/haiderCho/AgroSense</div>
+            <div className="project-card-title">AgroSense</div>
             <div className="project-card-desc">
-              A semantic search engine built with Next.js and vector embeddings for intelligent media discovery.
+              AI-powered crop recommendation system that predicts the most suitable crops using ML models.
             </div>
           </div>
         </a>

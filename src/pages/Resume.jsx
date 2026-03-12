@@ -92,21 +92,41 @@ export default function Resume() {
         </div>
       </div>
 
-      {/* Skills */}
-      <div className="skills-section">
-        <h2>My Skills</h2>
-        <SkillBar name="Python" percent={90} />
-        <SkillBar name="Machine Learning" percent={85} />
-        <SkillBar name="TypeScript" percent={80} />
-        <SkillBar name="NLP" percent={80} />
-        <SkillBar name="REST APIs" percent={80} />
-        <SkillBar name="Git / GitHub" percent={90} />
-        <SkillBar name="Next.js" percent={75} />
-        <SkillBar name="Data Analysis" percent={75} />
-        <SkillBar name="Docker" percent={70} />
-        <SkillBar name="SQL" percent={70} />
-        <SkillBar name="Figma" percent={70} />
-        <SkillBar name="C#" percent={65} />
+      {/* Skills & Languages Grid */}
+      <div className="resume-grid" style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
+        {/* Technical Mastery */}
+        <div className="skills-section">
+          <div className="section-heading" style={{ marginBottom: 20 }}>
+            <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            Technical Mastery
+          </div>
+          <SkillBar name="AI & Machine Learning" percent={85} />
+          <SkillBar name="Full-Stack Systems" percent={78} />
+          <SkillBar name="Cloud & MLOps" percent={72} />
+          <SkillBar name="Software Architecture" percent={75} />
+          <SkillBar name="Database Design" percent={70} />
+        </div>
+
+        {/* Language Proficiency */}
+        <div className="languages-section">
+          <div className="section-heading" style={{ marginBottom: 20 }}>
+            <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+            </svg>
+            Language Proficiency
+          </div>
+          
+          <div className="language-grid" style={{ display: 'grid', gap: 12 }}>
+            <LanguageItem language="Bangla" level="Native Speaker" percent={100} />
+            <LanguageItem language="English" level="Advanced / Fluid" percent={90} />
+            <LanguageItem language="Japanese" level="Beginner (N5 Level)" percent={25} />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -114,14 +134,35 @@ export default function Resume() {
 
 function SkillBar({ name, percent }) {
   return (
-    <div className="skill-item">
-      <div className="skill-header">
-        <span className="skill-name">{name}</span>
-        <span className="skill-percent">{percent}%</span>
+    <div className="skill-item" style={{ marginBottom: 16 }}>
+      <div className="skill-header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+        <span className="skill-name" style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{name}</span>
+        <span className="skill-percent" style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{percent}%</span>
       </div>
-      <div className="skill-bar">
-        <div className="skill-fill" style={{ width: `${percent}%` }} />
+      <div className="skill-bar" style={{ height: 6, background: 'rgba(255, 255, 255, 0.05)', borderRadius: 3, overflow: 'hidden' }}>
+        <div className="skill-fill" style={{ width: `${percent}%`, height: '100%', background: 'var(--primary)', boxShadow: '0 0 10px var(--primary-low-alpha)' }} />
       </div>
     </div>
   );
 }
+
+function LanguageItem({ language, level, percent }) {
+  return (
+    <div className="language-item" style={{ padding: '12px 16px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid var(--surface-border)', borderRadius: 12 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{language}</div>
+          <div style={{ fontSize: 11, color: 'var(--text-secondary)', marginTop: 2 }}>{level}</div>
+        </div>
+        <div className="lang-indicator" style={{ position: 'relative', width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg style={{ transform: 'rotate(-90deg)', width: 36, height: 36 }}>
+            <circle cx="18" cy="18" r="16" fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
+            <circle cx="18" cy="18" r="16" fill="transparent" stroke="var(--accent)" strokeWidth="3" strokeDasharray={100} strokeDashoffset={100 - percent} />
+          </svg>
+          <span style={{ position: 'absolute', fontSize: 9, fontWeight: 700, color: 'var(--text)' }}>{percent}%</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
