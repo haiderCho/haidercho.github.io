@@ -16,7 +16,7 @@ export default function TechStack() {
 
       <div className="tech-stack-container">
         {techStack.map((category, idx) => (
-          <div key={idx} className="tech-category animate-enter" style={{ animationDelay: `${idx * 0.1}s` }}>
+          <div key={idx} className="tech-category">
             <h3 className="category-title">{category.category}</h3>
             <div className="tech-grid">
               {category.skills.map((skill, sIdx) => (
@@ -49,7 +49,7 @@ export default function TechStack() {
         ))}
 
         {/* Workspace Section */}
-        <div className="workspace-section animate-enter" style={{ animationDelay: '0.6s' }}>
+        <div className="workspace-section">
           <div className="workspace-header">
             <FaDesktop />
             <h3>Current Workspace</h3>

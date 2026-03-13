@@ -11,6 +11,7 @@
   --sidebar-width: 300px;
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI Variable', system-ui, sans-serif;
   --timing-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --glow-color: rgba(157, 124, 216, 0.2);
 }
 
 *, *::before, *::after {
@@ -34,26 +35,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Animations */
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-enter {
-  animation: fadeUp 0.6s var(--timing-spring) forwards;
-  will-change: transform, opacity;
-}
-
-.animate-enter-stagger-1 { animation: fadeUp 0.6s var(--timing-spring) 0.1s forwards; opacity: 0; will-change: transform, opacity; }
-.animate-enter-stagger-2 { animation: fadeUp 0.6s var(--timing-spring) 0.2s forwards; opacity: 0; will-change: transform, opacity; }
-.animate-enter-stagger-3 { animation: fadeUp 0.6s var(--timing-spring) 0.3s forwards; opacity: 0; will-change: transform, opacity; }
+/* Animations cleared for browser-style instant transitions */
 
 
 a {
@@ -87,6 +69,9 @@ a:hover {
   border-radius: var(--radius);
   padding: 32px 24px;
   text-align: center;
+  transform: translateY(-2px);
+  will-change: transform, filter;
+  filter: drop-shadow(0 8px 12px var(--glow-color));
 }
 
 .sidebar-photo {
@@ -270,14 +255,18 @@ a:hover {
 .main-content {
   flex: 1;
   min-width: 0;
+  transform: translateY(-2px);
+  will-change: transform;
 }
 
 /* Navigation */
 .nav {
   display: flex;
   justify-content: flex-end;
-  gap: 4px;
-  margin-bottom: 24px;
+  gap: 0; /* Tabs touch each other for browser look */
+  position: relative;
+  z-index: 2;
+  margin-bottom: -1px;
 }
 
 .nav-link {
@@ -285,39 +274,31 @@ a:hover {
   font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);
-  padding: 6px 14px;
-  border-radius: var(--radius);
+  padding: 8px 24px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0; /* Modern compact rounded corners */
   cursor: pointer;
-  transition: color 200ms ease;
-  background: none;
-  border: none;
+  transition: color 250ms ease;
   font-family: inherit;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0px;
-  left: 20%;
-  width: 60%;
-  height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 300ms var(--timing-spring);
+  margin-bottom: 0px;
 }
 
 .nav-link:hover {
   color: var(--text);
 }
 
+/* .nav-link:active removed to prevent snappy click feedback */
+
 .nav-link.active {
   color: var(--accent);
-}
-
-.nav-link.active::after {
-  transform: scaleX(1);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-bottom: 2px solid var(--surface); /* Mask content border */
+  padding-bottom: 10px;
+  font-weight: 600;
+  z-index: 3;
 }
 
 /* Page Container */
@@ -325,7 +306,10 @@ a:hover {
   background: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
+  border-top-right-radius: 0; /* Square this corner to perfectly connect with the rightmost tab */
   padding: 36px 32px;
+  position: relative;
+  z-index: 1;
 }
 
 .page-title {
@@ -403,13 +387,11 @@ a:hover {
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 200ms ease, transform 300ms var(--timing-spring), box-shadow 300ms ease;
-  will-change: transform;
+  transition: border-color 200ms ease, box-shadow 300ms ease;
 }
 
 .project-card:hover {
   border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-4px);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
@@ -565,13 +547,11 @@ a:hover {
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 200ms ease, transform 300ms var(--timing-spring), box-shadow 300ms ease;
-  will-change: transform;
+  transition: border-color 200ms ease, box-shadow 300ms ease;
 }
 
 .portfolio-card:hover {
   border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-4px);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
@@ -839,13 +819,11 @@ a:hover {
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
   padding: 24px;
-  transition: border-color 200ms ease, transform 300ms var(--timing-spring), box-shadow 300ms ease;
-  will-change: transform;
+  transition: border-color 200ms ease, box-shadow 300ms ease;
 }
 
 .blog-card:hover {
   border-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(4px);
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
 }
 
@@ -1225,12 +1203,11 @@ a:hover {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  transition: all 300ms var(--timing-spring);
+  transition: border-color 300ms ease, box-shadow 300ms ease;
   cursor: default;
 }
 .tech-card:hover {
   border-color: var(--primary);
-  transform: translateY(-4px);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 .tech-card.is-ai {
@@ -1391,7 +1368,6 @@ a:hover {
 .workspace-item:hover {
   border-color: var(--accent);
   background: rgba(255, 158, 100, 0.03);
-  transform: translateX(4px);
 }
 .workspace-item svg {
   width: 18px;
@@ -1445,7 +1421,6 @@ a:hover {
 .back-button:hover {
   color: var(--accent);
   border-color: var(--accent);
-  transform: translateX(-4px);
 }
 
 .full-post {

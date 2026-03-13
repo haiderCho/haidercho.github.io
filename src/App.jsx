@@ -41,7 +41,7 @@ export default function App() {
             </button>
           ))}
         </nav>
-        <div key={activePage} className="animate-enter">
+        <div>
           {renderPage()}
         </div>
         <footer className="footer">
