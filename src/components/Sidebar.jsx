@@ -4,7 +4,7 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <img
-        src="/Luffy.png"
+        src="Luffy.png"
         alt={contactInfo.name}
         className="sidebar-photo"
       />
