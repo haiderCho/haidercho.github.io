@@ -1,5 +1,0 @@
-MLcodeSnippet.png: 3680x9732 ratio: 0.38
-llm-data.png: 3900x2696 ratio: 1.45
-llm-model.png: 4096x8728 ratio: 0.47
-llm-train.png: 4096x5228 ratio: 0.78
-llm-metrics.png: 4096x3812 ratio: 1.07

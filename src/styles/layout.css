@@ -17,6 +17,12 @@
   will-change: transform;
 }
 
+/* Interaction Feedback */
+button:active, a:active {
+  transform: scale(0.96) !important;
+  transition: transform 0.1s ease !important;
+}
+
 /* Page Container */
 .page {
   background: var(--surface);
@@ -49,6 +55,23 @@
   font-size: 13px;
   color: var(--text-secondary);
   margin-top: 24px;
+}
+
+/* Page Transition Animation */
+.page-transition-wrapper {
+  animation: pageReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes pageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- Full-Page Mobile Feel & Base Layout Fixes --- */

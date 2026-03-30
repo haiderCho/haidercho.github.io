@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /gallery/
+
+User-agent: Googlebot-Image
+Disallow: /gallery/
+
+Sitemap: https://haidercho.github.io/sitemap.xml

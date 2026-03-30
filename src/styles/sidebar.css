@@ -246,6 +246,7 @@
   .mobile-profile-view {
     display: block;
     width: 100%;
+    margin-bottom: 40px; /* Space between sidebar and About content */
   }
   
   .mobile-profile-view .sidebar {

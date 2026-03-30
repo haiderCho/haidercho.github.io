@@ -12,16 +12,13 @@ import TechStack from './pages/TechStack';
 const pages = ['About', 'Resume', 'Tech Stack', 'Portfolio', 'Blog', 'Contact', 'Gallery'];
 
 export default function App() {
-  const [activePage, setActivePage] = useState(() => 
-    window.innerWidth <= 768 ? 'Profile' : 'About'
-  );
+  const [activePage, setActivePage] = useState('About');
 
   useEffect(() => {
+    document.title = `${activePage} | Nafiz Haider Chowdhury`;
+    
     const handleResize = () => {
-      // Sync state when crossing the mobile/desktop boundary
-      if (window.innerWidth > 768 && activePage === 'Profile') {
-        setActivePage('About');
-      }
+      // Logic for cross-platform state sync if needed
     };
 
     window.addEventListener('resize', handleResize);
@@ -31,8 +28,13 @@ export default function App() {
 
   const renderPage = () => {
     switch (activePage) {
-      case 'Profile': return <div className="mobile-profile-view"><Sidebar /></div>;
-      case 'About': return <About />;
+      case 'About': 
+        return (
+          <>
+            {window.innerWidth <= 768 && <div className="mobile-profile-view"><Sidebar /></div>}
+            <About />
+          </>
+        );
       case 'Resume': return <Resume />;
       case 'Portfolio': return <Portfolio />;
       case 'Blog': return <Blog />;
@@ -44,7 +46,7 @@ export default function App() {
   };
 
   return (
-    <div className={`app-layout ${activePage === 'Profile' ? 'profile-active' : ''}`}>
+    <div className={`app-layout ${activePage === 'About' && window.innerWidth <= 768 ? 'profile-active' : ''}`}>
       <div className="sidebar-wrapper">
         <Sidebar />
       </div>
@@ -61,7 +63,9 @@ export default function App() {
           ))}
         </nav>
         <div className="page-wrapper">
-          {renderPage()}
+          <div className="page-transition-wrapper" key={activePage}>
+            {renderPage()}
+          </div>
         </div>
         <footer className="footer">
           © 2026 Nafiz Haider Chowdhury | All Rights Reserved
