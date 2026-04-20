@@ -127,6 +127,6 @@ export const workspaceInfo = {
   os: "Windows 11 Pro",
   cpu: "Intel Core i7 (11th Gen)",
   ram: "32 GB RAM",
-  storage: "2X 1TB SSD",
+  storage: "2TB SSD",
   gpu: "NVIDIA RTX 3060 (12GB)"
 };

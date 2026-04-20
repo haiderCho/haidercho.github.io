@@ -72,32 +72,32 @@
   margin-bottom: 12px;
 }
 
-.principle-number {
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 0;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -1px;
+.principle-icon-wrapper {
+  width: 34px;
+  height: 34px;
+  background: rgba(157, 124, 216, 0.1);
+  color: var(--primary);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  border: 1px solid rgba(157, 124, 216, 0.15);
+  flex-shrink: 0;
 }
 
-.principle-card:nth-child(2) .principle-number,
-.principle-card:nth-child(5) .principle-number {
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.principle-card:nth-child(2) .principle-icon-wrapper,
+.principle-card:nth-child(5) .principle-icon-wrapper {
+  background: rgba(122, 162, 247, 0.1);
+  color: var(--secondary);
+  border-color: rgba(122, 162, 247, 0.15);
 }
 
-.principle-card:nth-child(3) .principle-number,
-.principle-card:nth-child(6) .principle-number {
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.principle-card:nth-child(3) .principle-icon-wrapper,
+.principle-card:nth-child(6) .principle-icon-wrapper {
+  background: rgba(255, 158, 100, 0.1);
+  color: var(--accent);
+  border-color: rgba(255, 158, 100, 0.15);
 }
 
 .principle-title {
@@ -113,33 +113,6 @@
   line-height: 1.6;
   color: var(--text-secondary);
   flex: 1;
-  margin-bottom: 14px;
-}
-
-.principle-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: auto;
-}
-
-.principle-tag {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  padding: 4px 10px;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-secondary);
-  backdrop-filter: blur(4px);
-  white-space: nowrap;
-  transition: all 300ms ease;
-}
-
-.principle-card:hover .principle-tag {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
 }
 
 /* Sleek Highlight Ribbon */

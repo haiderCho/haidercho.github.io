@@ -1,7 +1,7 @@
 import { contactInfo } from '../data/contactInfo';
 import { workspaceInfo } from '../data/techStack';
 import SectionHeading from '../components/SectionHeading';
-import { FiCpu, FiCompass, FiMonitor, FiBookOpen, FiFilm, FiCoffee, FiHeadphones, FiGlobe, FiLayers, FiSearch, FiSliders } from 'react-icons/fi';
+import { FiCpu, FiCompass, FiMonitor, FiBookOpen, FiBookmark, FiFilm, FiCoffee, FiHeadphones, FiGlobe, FiLayers, FiSearch, FiSliders, FiRefreshCw, FiDatabase, FiPackage, FiShield, FiTarget, FiUsers } from 'react-icons/fi';
 import { FaWindows, FaMemory, FaGamepad, FaHdd } from 'react-icons/fa';
 import { SiIntel, SiNvidia } from 'react-icons/si';
 
@@ -73,81 +73,50 @@ export default function About() {
       <div className="principles-grid">
         <div className="principle-card" style={{ animationDelay: '100ms' }}>
           <div className="card-header-inline">
-            <span className="principle-number">01</span>
+            <div className="principle-icon-wrapper"><FiRefreshCw /></div>
             <h4 className="principle-title">Reproducibility is non-negotiable</h4>
           </div>
-          <p className="principle-desc">A result you can't reproduce isn't a result, it's an anecdote. Every experiment is versioned: data, code, config, seed. If I can't rerun it in 6 months, it doesn't count.
-          </p>
-          <div className="principle-tags">
-            <span className="principle-tag">DVC / MLflow</span>
-            <span className="principle-tag">Lineage</span>
-            <span className="principle-tag">Provenance</span>
-          </div>
+          <p className="principle-desc">If it can&apos;t be rerun in 6 months, it didn&apos;t happen — data, code, config, seed, all versioned.</p>
         </div>
 
         <div className="principle-card" style={{ animationDelay: '175ms' }}>
           <div className="card-header-inline">
-            <span className="principle-number">02</span>
+            <div className="principle-icon-wrapper"><FiDatabase /></div>
             <h4 className="principle-title">Data quality over model complexity</h4>
           </div>
-          <p className="principle-desc">A boring model on clean data outperforms a clever one trained on garbage. I spend disproportionate time on data pipelines, labeling heuristics, and distribution audits, because the ceiling is always data.</p>
-          <div className="principle-tags">
-            <span className="principle-tag">Data-Centric AI</span>
-            <span className="principle-tag">Validation</span>
-            <span className="principle-tag">Drift Detection</span>
-          </div>
+          <p className="principle-desc">A logistic regression on clean data beats a transformer trained on garbage. The ceiling is always the data.</p>
         </div>
 
         <div className="principle-card" style={{ animationDelay: '250ms' }}>
           <div className="card-header-inline">
-            <span className="principle-number">03</span>
+            <div className="principle-icon-wrapper"><FiPackage /></div>
             <h4 className="principle-title">Ship a baseline first</h4>
           </div>
-          <p className="principle-desc">A linear model or heuristic goes live before anything complex. It flushes out plumbing bugs and sets the performance floor.</p>
-          <div className="principle-tags">
-            <span className="principle-tag">Baselines</span>
-            <span className="principle-tag">Iterative Delivery</span>
-            <span className="principle-tag">YAGNI</span>
-          </div>
+          <p className="principle-desc">A heuristic goes live before anything clever — it flushes out every assumption and sets a real performance floor.</p>
         </div>
 
         <div className="principle-card" style={{ animationDelay: '325ms' }}>
           <div className="card-header-inline">
-            <span className="principle-number">04</span>
+            <div className="principle-icon-wrapper"><FiShield /></div>
             <h4 className="principle-title">Deploy with epistemic humility</h4>
           </div>
-          <p className="principle-desc">Every deployment is a hypothesis. Shadow modes, canary rollouts, and circuit breakers are first-class requirements, not afterthoughts.</p>
-          <div className="principle-tags">
-            <span className="principle-tag">Shadow Deploy</span>
-            <span className="principle-tag">Observability</span>
-            <span className="principle-tag">Kill Switches</span>
-          </div>
+          <p className="principle-desc">Every deployment is a hypothesis — shadow modes, canaries, and kill switches are how you test it without burning production.</p>
         </div>
 
         <div className="principle-card" style={{ animationDelay: '400ms' }}>
           <div className="card-header-inline">
-            <span className="principle-number">05</span>
+            <div className="principle-icon-wrapper"><FiTarget /></div>
             <h4 className="principle-title">Optimize for the outcome</h4>
           </div>
-          <p className="principle-desc">Validation loss and F1 are proxies, not the mission. The downstream business or user metric stays visible at all times.</p>
-          <div className="principle-tags">
-            <span className="principle-tag">Metric Hierarchy</span>
-            <span className="principle-tag">Product KPIs</span>
-            <span className="principle-tag">A/B Testing</span>
-          </div>
+          <p className="principle-desc">Loss curves and F1 are proxies — the downstream business metric is what stays on the dashboard.</p>
         </div>
 
         <div className="principle-card" style={{ animationDelay: '475ms' }}>
           <div className="card-header-inline">
-            <span className="principle-number">06</span>
-            <h4 className="principle-title">System includes the Users</h4>
+            <div className="principle-icon-wrapper"><FiUsers /></div>
+            <h4 className="principle-title">The system includes the users</h4>
           </div>
-          <p className="principle-desc">The real system includes the UI, feedback loops, and the users who adapt to it. Design for the full sociotechnical stack.</p>
-          <div className="principle-tags">
-            <span className="principle-tag">RLHF</span>
-            <span className="principle-tag">Human-in-the-Loop</span>
-            <span className="principle-tag">Feedback Systems</span>
-          </div>
+          <p className="principle-desc">The model is 20% of the system. The UI, feedback loops, and user behavior that drifts back into training — that&apos;s the rest.</p>
         </div>
       </div>
 
@@ -217,21 +186,21 @@ export default function About() {
             <div className="trajectory-icon-wrapper"><FiLayers /></div>
             <h4 className="trajectory-title">Retrieval-Augmented Generation</h4>
           </div>
-          <p className="trajectory-desc">Combining retrieval pipelines with generative models for grounded, context-aware outputs.</p>
+          <p className="trajectory-desc">Grounding generative outputs with retrieval so the model answers from facts, not vibes.</p>
         </div>
         <div className="trajectory-card" style={{ animationDelay: '200ms' }}>
           <div className="card-header-inline">
             <div className="trajectory-icon-wrapper"><FiSearch /></div>
             <h4 className="trajectory-title">Vector Search & Embeddings</h4>
           </div>
-          <p className="trajectory-desc">Semantic search pipelines using embedding models and vector databases for intelligent retrieval.</p>
+          <p className="trajectory-desc">Embedding models and vector databases that make search understand meaning, not just keywords.</p>
         </div>
         <div className="trajectory-card" style={{ animationDelay: '300ms' }}>
           <div className="card-header-inline">
             <div className="trajectory-icon-wrapper"><FiSliders /></div>
             <h4 className="trajectory-title">LLM Fine-Tuning</h4>
           </div>
-          <p className="trajectory-desc">Parameter-efficient fine-tuning to adapt large language models for domain-specific tasks.</p>
+          <p className="trajectory-desc">LoRA and QLoRA to bend large models toward specific domains without retraining from scratch.</p>
         </div>
       </div>
 
@@ -246,83 +215,55 @@ export default function About() {
         Off the clock. The stories, music, and hardware tangents that keep me balanced when the laptop is finally closed.
       </p>
 
-     <div className="hobbies-grid">
-  <div className="hobby-card" style={{ animationDelay: '100ms' }}>
-    <div className="card-header-inline">
-      <div className="hobby-icon-wrapper"><FiBookOpen /></div>
-      <h4 className="hobby-title">Books & Literature</h4>
-    </div>
-    <p className="hobby-desc">
-      Humayun Ahmed is a 150+ book obsession. Beyond that Tagore, Nazrul,
-      Dostoevsky, Nietzsche, Tolkien, GRRM. The shelf spans Bangla classics,
-      philosophy, high fantasy, and whatever math-logic rabbit hole I'm
-      currently down.
-    </p>
-  </div>
+      <div className="hobbies-grid">
+        <div className="hobby-card" style={{ animationDelay: '100ms' }}>
+          <div className="card-header-inline">
+            <div className="hobby-icon-wrapper"><FiBookOpen /></div>
+            <h4 className="hobby-title">Books &amp; Literature</h4>
+          </div>
+          <p className="hobby-desc">Humayun Ahmed is a 150+ book obsession. Beyond that Tagore, Nazrul, Dostoevsky, Nietzsche, Tolkien, GRRM — Bangla classics to philosophy to high fantasy.</p>
+        </div>
 
-  <div className="hobby-card" style={{ animationDelay: '175ms' }}>
-    <div className="card-header-inline">
-      <div className="hobby-icon-wrapper hobby-icon-secondary"><FiBookOpen /></div>
-      <h4 className="hobby-title">Manga, Comics & Light Novels</h4>
-    </div>
-    <p className="hobby-desc">
-      170,000+ chapters across manga, manhwa, manhua. 
-      15,000+ issues of comics fill whatever gaps are left. 
-      And when the panels run out, light novels pick up the slack; 
-      sprawling, meticulously constructed worlds with protagonists who play by their own rules 
-      and authors who aren't afraid to go dark and stay there.
-    </p>
-  </div>
+        <div className="hobby-card" style={{ animationDelay: '175ms' }}>
+          <div className="card-header-inline">
+            <div className="hobby-icon-wrapper hobby-icon-secondary"><FiBookmark /></div>
+            <h4 className="hobby-title">Manga, Comics &amp; Light Novels</h4>
+          </div>
+          <p className="hobby-desc">170k+ chapters across manga, manhwa, & manhua. 15k+ comic issues. Light novels for when the panels run out.</p>
+        </div>
 
-  <div className="hobby-card" style={{ animationDelay: '275ms' }}>
-    <div className="card-header-inline">
-      <div className="hobby-icon-wrapper hobby-icon-accent"><FiFilm /></div>
-      <h4 className="hobby-title">Film, TV & Anime</h4>
-    </div>
-    <p className="hobby-desc">
-      Tracked 3,000+ movies, 1,500+ TV shows across Letterboxd, Serializd & IMDB. 
-      1,900+ anime entries on MAL & AniList.
-      A sucker for rich world-building and fantasy, equally drawn to brilliant, unhinged protagonists 
-      and great storytelling. Spans film, TV, and anime with equal obsession.
-    </p>
-  </div>
+        <div className="hobby-card" style={{ animationDelay: '275ms' }}>
+          <div className="card-header-inline">
+            <div className="hobby-icon-wrapper hobby-icon-accent"><FiFilm /></div>
+            <h4 className="hobby-title">Film, TV &amp; Anime</h4>
+          </div>
+          <p className="hobby-desc">3,000+ films, 1,500+ shows, 1,900+ anime. A sucker for rich world-building and fantasy, equally drawn to brilliant, unhinged protagonists and great storytelling.</p>
+        </div>
 
-  <div className="hobby-card" style={{ animationDelay: '350ms' }}>
-    <div className="card-header-inline">
-      <div className="hobby-icon-wrapper"><FaGamepad /></div>
-      <h4 className="hobby-title">Gaming</h4>
-    </div>
-    <p className="hobby-desc">
-      Witcher 3, Arkham City, Assassin's Creed II — open worlds with weight behind them. 
-      Plus a completely unapologetic gacha habit for any IP I already love: One Piece, DBZ, Bleach. 
-      No regrets.
-    </p>
-  </div>
+        <div className="hobby-card" style={{ animationDelay: '350ms' }}>
+          <div className="card-header-inline">
+            <div className="hobby-icon-wrapper"><FaGamepad /></div>
+            <h4 className="hobby-title">Gaming</h4>
+          </div>
+          <p className="hobby-desc">Witcher 3, Arkham City, AC2. Plus an unapologetic gacha habit for every IP I love — One Piece, DBZ, Bleach.</p>
+        </div>
 
-  <div className="hobby-card" style={{ animationDelay: '425ms' }}>
-    <div className="card-header-inline">
-      <div className="hobby-icon-wrapper hobby-icon-accent"><FiHeadphones /></div>
-      <h4 className="hobby-title">Music</h4>
-    </div>
-    <p className="hobby-desc">
-      Somewhere between Bangla rock poetry and American heavy metal,
-      with detours through Japanese, Hindi, Urdu, and anything else that earns the play. 
-      A deep, chaotic library held together by one rule: it has to hit.
-    </p>
-  </div>
+        <div className="hobby-card" style={{ animationDelay: '425ms' }}>
+          <div className="card-header-inline">
+            <div className="hobby-icon-wrapper hobby-icon-accent"><FiHeadphones /></div>
+            <h4 className="hobby-title">Music</h4>
+          </div>
+          <p className="hobby-desc">Bangla rock to American metal, with Japanese, Hindi, and Urdu in between. One rule: it has to hit.</p>
+        </div>
 
-  <div className="hobby-card" style={{ animationDelay: '500ms' }}>
-    <div className="card-header-inline">
-      <div className="hobby-icon-wrapper hobby-icon-secondary"><FiGlobe /></div>
-      <h4 className="hobby-title">Language Learning</h4>
-    </div>
-    <p className="hobby-desc">
-      Currently studying Japanese — partly to read manga raws before the
-      scanlation catches up, partly because understanding human language
-      gives better ground truth for working with NLP.
-    </p>
-  </div>
-</div>
+        <div className="hobby-card" style={{ animationDelay: '500ms' }}>
+          <div className="card-header-inline">
+            <div className="hobby-icon-wrapper hobby-icon-secondary"><FiGlobe /></div>
+            <h4 className="hobby-title">Language Learning</h4>
+          </div>
+          <p className="hobby-desc">Currently learning Japanese — partly to read manga raws before the scanlation catches up, partly because I love learning new languages.</p>
+        </div>
+      </div>
 
     </div>
   );
