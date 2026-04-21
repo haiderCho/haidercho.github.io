@@ -4,7 +4,7 @@ import BlogPost from './BlogPost';
 // Simple frontmatter parser to avoid Node.js dependency issues in browser
 function parseFrontmatter(content) {
   try {
-    const match = content.match(/^---\r?\n([\s\S]+?)\r?\n---/);
+    const match = content.match(/^---\r?\n([\s\S]+?)\r?\n---(\r?\n|$)/);
     if (!match) return { data: {}, content };
     
     const yaml = match[1];
@@ -18,11 +18,22 @@ function parseFrontmatter(content) {
       const key = line.slice(0, firstColon).trim();
       let value = line.slice(firstColon + 1).trim();
       
-      // Basic type parsing
+      // Remove surrounding quotes if present
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      }
+      
+      // Basic array parsing [a, b, c]
       if (value.startsWith('[') && value.endsWith(']')) {
-        data[key] = value.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
+        data[key] = value.slice(1, -1).split(',').map(s => {
+          let item = s.trim();
+          if ((item.startsWith('"') && item.endsWith('"')) || (item.startsWith("'") && item.endsWith("'"))) {
+            item = item.slice(1, -1);
+          }
+          return item;
+        });
       } else {
-        data[key] = value.replace(/^["']|["']$/g, '');
+        data[key] = value;
       }
     });
     

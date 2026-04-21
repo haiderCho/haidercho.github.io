@@ -9,16 +9,27 @@ import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import TechStack from './pages/TechStack';
 
-const pages = ['About', 'Resume', 'Tech Stack', 'Portfolio', 'Blog', 'Contact', 'Gallery'];
+const PAGES_CONFIG = {
+  'About': <About />,
+  'Resume': <Resume />,
+  'Tech Stack': <TechStack />,
+  'Portfolio': <Portfolio />,
+  'Blog': <Blog />,
+  'Contact': <Contact />,
+  'Gallery': <Gallery />
+};
+
+const pages = Object.keys(PAGES_CONFIG);
 
 export default function App() {
   const [activePage, setActivePage] = useState('About');
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     document.title = `${activePage} | Nafiz Haider Chowdhury`;
     
     const handleResize = () => {
-      // Logic for cross-platform state sync if needed
+      setWindowWidth(window.innerWidth);
     };
 
     window.addEventListener('resize', handleResize);
@@ -27,26 +38,22 @@ export default function App() {
 
 
   const renderPage = () => {
-    switch (activePage) {
-      case 'About': 
-        return (
-          <>
-            {window.innerWidth <= 768 && <div className="mobile-profile-view"><Sidebar /></div>}
-            <About />
-          </>
-        );
-      case 'Resume': return <Resume />;
-      case 'Portfolio': return <Portfolio />;
-      case 'Blog': return <Blog />;
-      case 'Contact': return <Contact />;
-      case 'Gallery': return <Gallery />;
-      case 'Tech Stack': return <TechStack />;
-      default: return <About />;
+    const Component = PAGES_CONFIG[activePage] || <About />;
+    
+    if (activePage === 'About' && windowWidth <= 768) {
+      return (
+        <>
+          <div className="mobile-profile-view"><Sidebar /></div>
+          {Component}
+        </>
+      );
     }
+    
+    return Component;
   };
 
   return (
-    <div className={`app-layout ${activePage === 'About' && window.innerWidth <= 768 ? 'profile-active' : ''}`}>
+    <div className={`app-layout ${activePage === 'About' && windowWidth <= 768 ? 'profile-active' : ''}`}>
       <div className="sidebar-wrapper">
         <Sidebar />
       </div>

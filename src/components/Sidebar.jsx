@@ -17,7 +17,7 @@ export default function Sidebar() {
     };
 
     updateTime();
-    const timer = setInterval(updateTime, 10000); // Update every 10 seconds
+    const timer = setInterval(updateTime, 60000); // Update every minute
     return () => clearInterval(timer);
   }, []);
 
