@@ -58,7 +58,7 @@ export default function App() {
         <Sidebar />
       </div>
       <div className="main-content">
-        <nav className="nav">
+        <nav className="nav" aria-label="Main Navigation">
           {pages.map((page) => (
             <button
               key={page}

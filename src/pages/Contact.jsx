@@ -110,10 +110,10 @@ export default function Contact() {
       <div className="contact-box contact-form-box">
         <form onSubmit={handleSubmit} className="contact-form-v2">
           <div className="form-grid-v2">
-            <input type="text" placeholder="Full Name" required className="form-input-v2" />
-            <input type="email" placeholder="Email Address" required className="form-input-v2" />
+            <input type="text" placeholder="Full Name" aria-label="Full Name" required className="form-input-v2" />
+            <input type="email" placeholder="Email Address" aria-label="Email Address" required className="form-input-v2" />
           </div>
-          <textarea placeholder="Your Message" required className="form-textarea-v2"></textarea>
+          <textarea placeholder="Your Message" aria-label="Your Message" required className="form-textarea-v2"></textarea>
           
           <div className="form-footer-v2">
             <div className="attach-area">
@@ -122,6 +122,7 @@ export default function Contact() {
                 ref={fileInputRef}
                 accept=".pdf"
                 onChange={handleFileChange}
+                aria-label="Attach PDF document"
                 style={{ display: 'none' }}
               />
               <button type="button" className="attach-button" onClick={() => fileInputRef.current?.click()}>
@@ -131,13 +132,13 @@ export default function Contact() {
               {fileName && (
                 <span className="attached-file">
                   {fileName}
-                  <button type="button" className="remove-file" onClick={removeFile}>×</button>
+                  <button type="button" className="remove-file" onClick={removeFile} aria-label="Remove attached file">×</button>
                 </span>
               )}
             </div>
             <div className="form-submit-wrapper">
               {submitted ? (
-                <span className="success-msg">Message Sent!</span>
+                <span className="success-msg" role="status" aria-live="polite">Message Sent!</span>
               ) : (
                 <button type="submit" className="submit-btn-v2">
                   Send Message

@@ -212,18 +212,24 @@
 
 .form-input-v2, .form-textarea-v2 {
   background: var(--bg);
-  border: 1px solid var(--surface-border);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius);
   padding: 16px 20px;
   color: var(--text);
   font-family: inherit;
   font-size: 14px;
   outline: none;
-  transition: border-color 150ms ease;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input-v2::placeholder, .form-textarea-v2::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.95;
 }
 
 .form-input-v2:focus, .form-textarea-v2:focus {
-  border-color: var(--primary);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255, 158, 100, 0.2);
 }
 
 .form-textarea-v2 {

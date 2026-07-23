@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   HiOutlineUserCircle, 
   HiOutlineDocumentText, 
@@ -26,7 +26,12 @@ const secondaryNavItems = [
 export default function BottomNav({ activePage, setActivePage }) {
   const [showMore, setShowMore] = useState(false);
   const [isShrunken, setIsShrunken] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  
+  // Performance optimization: Use refs for scroll position and state inside scroll listener
+  // to avoid tearing down and re-binding the window scroll event listener on every scroll frame.
+  const lastScrollY = useRef(0);
+  const showMoreRef = useRef(showMore);
+  showMoreRef.current = showMore;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +39,7 @@ export default function BottomNav({ activePage, setActivePage }) {
       
       // Only shrink if we've scrolled more than 50px
       if (currentScrollY > 50) {
-        if (currentScrollY > lastScrollY) {
+        if (currentScrollY > lastScrollY.current) {
           // Scrolling Down -> Shrink
           setIsShrunken(true);
         } else {
@@ -46,15 +51,15 @@ export default function BottomNav({ activePage, setActivePage }) {
         setIsShrunken(false);
       }
       
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
       
       // Close more menu on scroll
-      if (showMore) setShowMore(false);
+      if (showMoreRef.current) setShowMore(false);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, showMore]);
+  }, []);
 
   const handleNavClick = (pageName) => {
     setActivePage(pageName);
@@ -79,10 +84,10 @@ export default function BottomNav({ activePage, setActivePage }) {
       </div>
 
       {/* Main Dock (Interactive Island) */}
-      <nav className={`bottom-nav theme-${activePage.toLowerCase().replace(' ', '-')} ${isShrunken ? 'shrunken' : ''}`}>
+      <nav className={`bottom-nav theme-${activePage.toLowerCase().replace(' ', '-')} ${isShrunken ? 'shrunken' : ''}`} aria-label="Mobile Navigation">
         {isShrunken ? (
           /* In shrunken mode, find and show the active icon from either list */
-          <button className="bottom-nav-link active">
+          <button className="bottom-nav-link active" aria-label={`Current active page: ${activePage}`}>
             <span className="bottom-nav-icon">
               {[...mainNavItems, ...secondaryNavItems].find(item => item.name === activePage)?.icon || <HiOutlineUserCircle />}
             </span>
@@ -95,6 +100,7 @@ export default function BottomNav({ activePage, setActivePage }) {
                 key={item.name}
                 className={`bottom-nav-link${activePage === item.name ? ' active' : ''}`}
                 onClick={() => handleNavClick(item.name)}
+                aria-label={item.name}
               >
                 <span className="bottom-nav-icon">{item.icon}</span>
                 <span className="bottom-nav-label">{item.name}</span>
@@ -104,6 +110,8 @@ export default function BottomNav({ activePage, setActivePage }) {
             <button 
               className={`bottom-nav-link more-trigger${showMore ? ' active' : ''}`}
               onClick={() => setShowMore(!showMore)}
+              aria-label="More navigation options"
+              aria-expanded={showMore}
             >
               <span className="bottom-nav-icon"><HiOutlineSquares2X2 /></span>
               <span className="bottom-nav-label">More</span>

@@ -16,7 +16,7 @@ export default function About() {
 
   return (
     <div className="page">
-      <h2 className="page-title">Digital Identity</h2>
+      <h2 className="page-title">Who I Am</h2>
       <div className="page-underline" />
 
       {/* The Narrative */}

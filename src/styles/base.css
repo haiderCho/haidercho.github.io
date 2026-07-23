@@ -6,7 +6,7 @@
   --secondary: #7aa2f7;
   --accent: #ff9e64;
   --text: #dcd7e8;
-  --text-secondary: #78718a;
+  --text-secondary: #a098b2;
   --radius: 6px;
   --sidebar-width: 300px;
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI Variable', system-ui, sans-serif;
@@ -18,6 +18,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 html {

@@ -51,7 +51,7 @@ export const resumeData = {
     { name: "Database Design", percent: 65 }
   ],
   skillsRow2: [
-    { language: "Bangla", level: "Native Speaker", percent: 100 },
+    { language: "Bangla", level: "Native Speaker", percent: 99 },
     { language: "English", level: "Advanced / Fluid", percent: 85 },
     { language: "Japanese", level: "Beginner (N5 Level)", percent:33 }
   ]

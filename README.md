@@ -92,20 +92,20 @@ portfolio/
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) ≥ 20
-- npm
+- pnpm
 
 ### Installation
 
 ```bash
 git clone https://github.com/haiderCho/haidercho.github.io.git
 cd haidercho.github.io
-npm install
+pnpm install
 ```
 
 ### Development
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Opens at [http://localhost:5173](http://localhost:5173)
@@ -113,22 +113,22 @@ Opens at [http://localhost:5173](http://localhost:5173)
 ### Production Build
 
 ```bash
-npm run build
-npm run preview
+pnpm build
+pnpm preview
 ```
 
 ## ✦ Deployment
 
 The site auto-deploys to GitHub Pages on every push to `main` via the [deploy workflow](.github/workflows/deploy.yml):
 
-1. Installs dependencies (`npm ci`)
-2. Builds the project (`npm run build`)
+1. Installs dependencies (`pnpm install --frozen-lockfile`)
+2. Builds the project (`pnpm build`)
 3. Deploys `dist/` to the `gh-pages` branch
 
 Manual deploy:
 
 ```bash
-npm run deploy
+pnpm run deploy
 ```
 
 ## ✦ License

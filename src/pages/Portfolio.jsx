@@ -24,7 +24,7 @@ export default function Portfolio() {
                 alt={project.title}
                 className="fragment-image"
                 loading="lazy"
-                style={{ objectFit: project.fit || 'cover' }}
+                style={{ objectFit: project.fit || 'contain' }}
               />
               <div className="fragment-overlay"></div>
             </div>
