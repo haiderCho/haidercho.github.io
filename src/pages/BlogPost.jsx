@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { IoArrowBack } from 'react-icons/io5';
-import { IoCalendarOutline, IoTimeOutline, IoPricetagsOutline } from 'react-icons/io5';
+import { IoArrowBack, IoCalendarOutline, IoTimeOutline, IoPricetagsOutline } from 'react-icons/io5';
 
 export default function BlogPost({ post, onBack }) {
   if (!post) return null;

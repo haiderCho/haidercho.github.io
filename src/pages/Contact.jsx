@@ -3,14 +3,51 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { contactInfo } from '../data/contactInfo';
+import SectionHeading from '../components/SectionHeading';
+import { 
+  SiGithub, SiX, SiTelegram, 
+  SiLastdotfm, SiImdb, SiLetterboxd, 
+  SiMyanimelist, SiGoodreads, SiAnilist 
+} from 'react-icons/si';
+import { FaLinkedin, FaBookOpen, FaGamepad } from 'react-icons/fa';
+import { 
+  FiMail, FiPhone, FiMapPin, FiExternalLink, 
+  FiPaperclip, FiSend, FiShare2, FiActivity, FiMessageSquare 
+} from 'react-icons/fi';
 
-// Custom Marker Icon
-const customIcon = new L.Icon({
-  iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-  iconSize: [28, 28],
-  iconAnchor: [14, 28],
-  popupAnchor: [0, -28],
+// Custom Sleek Radar Pin Marker Icon matching theme
+const customIcon = L.divIcon({
+  className: 'custom-map-marker',
+  html: `
+    <div class="marker-pulse"></div>
+    <div class="marker-pin">
+      <svg viewBox="0 0 24 24" fill="#FF995C" width="18" height="18">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
+    </div>
+  `,
+  iconSize: [30, 30],
+  iconAnchor: [15, 26],
+  popupAnchor: [0, -26],
 });
+
+const getSocialIcon = (type) => {
+  switch (type) {
+    case 'github': return <SiGithub />;
+    case 'linkedin': return <FaLinkedin />;
+    case 'twitter': return <SiX />;
+    case 'telegram': return <SiTelegram />;
+    case 'goodreads': return <SiGoodreads />;
+    case 'letterboxd': return <SiLetterboxd />;
+    case 'imdb': return <SiImdb />;
+    case 'myanimelist': return <SiMyanimelist />;
+    case 'lastfm': return <SiLastdotfm />;
+    case 'anilist': return <SiAnilist />;
+    case 'comicgeeks': return <FaBookOpen />;
+    case 'backloggd': return <FaGamepad />;
+    default: return <FiExternalLink />;
+  }
+};
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -41,82 +78,148 @@ export default function Contact() {
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(data)}&bgcolor=${bgColor}&color=${fgColor}`;
 
   return (
-    <div className="page contact-page-v2">
-      <h2 className="page-title">Let's Connect</h2>
+    <div className="page contact-page">
+      <h2 className="page-title">Contact</h2>
       <div className="page-underline" />
 
-      {/* Map Section */}
-      <div className="contact-map-wrapper">
-        <div className="contact-map-card">
-          <div className="map-card-header">
-            <div className="map-card-title">{contactInfo.name}</div>
-            <div className="map-card-actions">
-              <svg viewBox="0 0 24 24" className="icon-sm"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
-            </div>
-          </div>
-          <div className="map-card-address">
-            Dhaka, Bangladesh
-          </div>
+      {/* 1. Full-Width Native Dark Map Banner */}
+      <div className="contact-map-fullwidth">
+        <div className="map-badge-overlay">
+          <span className="map-live-dot" />
+          <span>{contactInfo.location}</span>
         </div>
         <MapContainer 
           center={position} 
-          zoom={13} 
+          zoom={12} 
           scrollWheelZoom={false} 
+          zoomControl={false}
           attributionControl={false}
-          className="contact-map-v2"
+          className="contact-map-canvas"
         >
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+          />
+          <TileLayer
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}"
           />
           <Marker position={position} icon={customIcon}>
-            <Popup>{contactInfo.company}</Popup>
+            <Popup>{contactInfo.name} · {contactInfo.location}</Popup>
           </Marker>
         </MapContainer>
       </div>
 
-      {/* Contact Details Box */}
-      <div className="contact-box contact-details-box">
-        <div className="contact-box-content">
-          <div className="contact-info-items">
-            <div className="contact-info-item-row">
-              <div className="info-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              </div>
-              <div className="info-text-group">
-                <span className="info-label">Mobile</span>
-                <span className="info-value">{contactInfo.mobile}</span>
-              </div>
-            </div>
-            <div className="contact-info-item-row">
-              <div className="info-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </div>
-              <div className="info-text-group">
-                <span className="info-label">Email</span>
-                <span className="info-value">{contactInfo.email}</span>
-              </div>
-            </div>
+      {/* 2. Direct Channels Strip */}
+      <div className="contact-strip">
+        <a href={`mailto:${contactInfo.email}`} className="contact-strip-item">
+          <div className="strip-icon"><FiMail /></div>
+          <div className="strip-text">
+            <span className="strip-label">Email</span>
+            <span className="strip-val">{contactInfo.email}</span>
           </div>
-          <div className="contact-qr-wrapper">
-            <div className="qr-card">
-              <img src={qrUrl} alt="Contact QR" />
-              <div className="qr-logo-overlay">{contactInfo.qr.logoLetter}</div>
-            </div>
+        </a>
+
+        <div className="contact-strip-item">
+          <div className="strip-icon"><FiPhone /></div>
+          <div className="strip-text">
+            <span className="strip-label">Mobile</span>
+            <span className="strip-val">{contactInfo.mobile}</span>
+          </div>
+        </div>
+
+        <div className="contact-strip-item">
+          <div className="strip-icon"><FiMapPin /></div>
+          <div className="strip-text">
+            <span className="strip-label">Base</span>
+            <span className="strip-val">{contactInfo.location}</span>
+          </div>
+        </div>
+
+        <div className="contact-strip-qr">
+          <img src={qrUrl} alt="vCard QR" className="strip-qr-img" />
+          <span className="strip-qr-label">vCard</span>
+        </div>
+      </div>
+
+      {/* 3. Links Section (Socials & Trackers) */}
+      <div className="contact-links-section">
+        {/* Social / Dev */}
+        <div>
+          <SectionHeading title="Profiles" icon={<FiShare2 size={18} />} />
+          <div className="contact-pills-grid" style={{ marginTop: 14 }}>
+            {contactInfo.socialLinks.map((item) => (
+              <a 
+                key={item.url} 
+                href={item.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-pill"
+              >
+                <div className="pill-icon">{getSocialIcon(item.type)}</div>
+                <div className="pill-body">
+                  <span className="pill-name">{item.name}</span>
+                  <span className="pill-handle">{item.handle}</span>
+                </div>
+                <FiExternalLink className="pill-ext" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Trackers */}
+        <div style={{ marginTop: 24 }}>
+          <SectionHeading title="Trackers" icon={<FiActivity size={18} />} />
+          <div className="contact-pills-grid" style={{ marginTop: 14 }}>
+            {contactInfo.trackerLinks.map((item) => (
+              <a 
+                key={item.url} 
+                href={item.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-pill tracker-pill"
+              >
+                <div className="pill-icon tracker-icon">{getSocialIcon(item.type)}</div>
+                <div className="pill-body">
+                  <span className="pill-name">{item.name}</span>
+                  <span className="pill-handle">{item.handle}</span>
+                </div>
+                <FiExternalLink className="pill-ext" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Contact Form Box */}
-      <div className="contact-box contact-form-box">
-        <form onSubmit={handleSubmit} className="contact-form-v2">
-          <div className="form-grid-v2">
-            <input type="text" placeholder="Full Name" aria-label="Full Name" required className="form-input-v2" />
-            <input type="email" placeholder="Email Address" aria-label="Email Address" required className="form-input-v2" />
+      {/* 4. Minimal Contact Form */}
+      <div className="contact-form-card" style={{ marginTop: 28 }}>
+        <SectionHeading title="Send Message" icon={<FiMessageSquare size={18} />} />
+        
+        <form onSubmit={handleSubmit} className="contact-form" style={{ marginTop: 16 }}>
+          <div className="form-row">
+            <input 
+              type="text" 
+              placeholder="Your Name" 
+              aria-label="Your Name" 
+              required 
+              className="form-input" 
+            />
+            <input 
+              type="email" 
+              placeholder="Your Email" 
+              aria-label="Your Email" 
+              required 
+              className="form-input" 
+            />
           </div>
-          <textarea placeholder="Your Message" aria-label="Your Message" required className="form-textarea-v2"></textarea>
+          <textarea 
+            placeholder="Your message..." 
+            aria-label="Your Message" 
+            required 
+            rows="3" 
+            className="form-textarea"
+          ></textarea>
           
-          <div className="form-footer-v2">
-            <div className="attach-area">
+          <div className="form-bottom">
+            <div className="form-attach-box">
               <input
                 type="file"
                 ref={fileInputRef}
@@ -125,24 +228,31 @@ export default function Contact() {
                 aria-label="Attach PDF document"
                 style={{ display: 'none' }}
               />
-              <button type="button" className="attach-button" onClick={() => fileInputRef.current?.click()}>
-                <svg viewBox="0 0 24 24" className="icon-sm" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-                {fileName ? 'Change PDF' : 'Attach PDF (Optional)'}
+              <button 
+                type="button" 
+                className="attach-btn" 
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <FiPaperclip />
+                <span>{fileName ? 'Change PDF' : 'Attach PDF'}</span>
               </button>
               {fileName && (
-                <span className="attached-file">
+                <span className="attached-tag">
                   {fileName}
-                  <button type="button" className="remove-file" onClick={removeFile} aria-label="Remove attached file">×</button>
+                  <button type="button" onClick={removeFile} aria-label="Remove attached file">×</button>
                 </span>
               )}
             </div>
-            <div className="form-submit-wrapper">
+
+            <div className="form-submit-box">
               {submitted ? (
-                <span className="success-msg" role="status" aria-live="polite">Message Sent!</span>
+                <span className="sent-msg" role="status" aria-live="polite">
+                  ✓ Message Sent!
+                </span>
               ) : (
-                <button type="submit" className="submit-btn-v2">
-                  Send Message
-                  <svg viewBox="0 0 24 24" className="icon-sm" fill="none" stroke="currentColor" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <button type="submit" className="submit-btn">
+                  <span>Send</span>
+                  <FiSend />
                 </button>
               )}
             </div>

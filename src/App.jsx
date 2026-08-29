@@ -10,13 +10,13 @@ import Gallery from './pages/Gallery';
 import TechStack from './pages/TechStack';
 
 const PAGES_CONFIG = {
-  'About': <About />,
-  'Resume': <Resume />,
-  'Tech Stack': <TechStack />,
-  'Portfolio': <Portfolio />,
-  'Blog': <Blog />,
-  'Contact': <Contact />,
-  'Gallery': <Gallery />
+  'About': About,
+  'Resume': Resume,
+  'Tech Stack': TechStack,
+  'Portfolio': Portfolio,
+  'Blog': Blog,
+  'Contact': Contact,
+  'Gallery': Gallery,
 };
 
 const pages = Object.keys(PAGES_CONFIG);
@@ -25,31 +25,31 @@ export default function App() {
   const [activePage, setActivePage] = useState('About');
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  // Update document title when page changes
   useEffect(() => {
     document.title = `${activePage} | Nafiz Haider Chowdhury`;
-    
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, [activePage]);
 
+  // Track window width for mobile layout
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const renderPage = () => {
-    const Component = PAGES_CONFIG[activePage] || <About />;
-    
+    const PageComponent = PAGES_CONFIG[activePage];
+
     if (activePage === 'About' && windowWidth <= 768) {
       return (
         <>
           <div className="mobile-profile-view"><Sidebar /></div>
-          {Component}
+          <PageComponent />
         </>
       );
     }
-    
-    return Component;
+
+    return <PageComponent />;
   };
 
   return (
@@ -82,4 +82,3 @@ export default function App() {
     </div>
   );
 }
-

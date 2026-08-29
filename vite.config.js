@@ -7,7 +7,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
           leaflet: ['leaflet', 'react-leaflet'],
           icons: ['react-icons']
         }

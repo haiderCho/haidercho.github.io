@@ -2,12 +2,11 @@ import { techStack } from '../data/techStack';
 
 const proficiencyClass = (level) => {
   switch (level) {
-    case 'Expert': return 'prof-expert';
-    case 'Advanced': return 'prof-advanced';
-    case 'Intermediate': return 'prof-intermediate';
-    case 'Beginner': return 'prof-beginner';
-    case 'Novice': return 'prof-novice';
-    default: return 'prof-intermediate';
+    case 'Core':      return 'prof-expert';
+    case 'Proficient':return 'prof-advanced';
+    case 'Familiar':  return 'prof-intermediate';
+    case 'Exploring': return 'prof-beginner';
+    default:          return 'prof-intermediate';
   }
 };
 
@@ -18,7 +17,7 @@ export default function TechStack() {
       <div className="page-underline" />
 
       <p className="section-subtext">
-        Bridging the gap between research and production with a focus on the full ML lifecycle.
+        Bridging the gap between research and production — across the full ML lifecycle.
       </p>
 
       <div className="ts-container">
@@ -28,9 +27,6 @@ export default function TechStack() {
               <span className="ts-section-num">{String(idx + 1).padStart(2, '0')}</span>
               <div className="ts-section-text">
                 <h3 className="ts-section-title">{category.category}</h3>
-                {category.description && (
-                  <p className="ts-section-desc">{category.description}</p>
-                )}
               </div>
             </div>
 

@@ -1,4 +1,3 @@
-import { contactInfo } from '../data/contactInfo';
 import { resumeData } from '../data/resumeData';
 import SectionHeading from '../components/SectionHeading';
 
@@ -9,8 +8,8 @@ export default function Resume() {
       <div className="page-underline" />
 
       {/* Experience */}
-      <SectionHeading 
-        title="Experience" 
+      <SectionHeading
+        title="Experience"
         icon={
           <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" fill="none" stroke="currentColor">
             <rect x="2" y="7" width="20" height="14" />
@@ -19,21 +18,21 @@ export default function Resume() {
         }
       />
 
-      <div className="timeline" style={{ marginTop: 16 }}>
+      <div className="timeline resume-timeline">
         {resumeData.experience.map((job, idx) => (
           <div key={idx} className="timeline-item">
             <div className="timeline-dot" />
             <div className="timeline-title">{job.title}</div>
-            <div className="timeline-company" style={{ color: 'var(--text)', fontWeight: 600 }}>{job.company}{job.type ? ` · ${job.type}` : ''}</div>
-            <div className="timeline-date" style={{ color: 'var(--text-secondary)' }}>{job.date}</div>
+            <div className="timeline-company">{job.company}{job.type ? ` · ${job.type}` : ''}</div>
+            <div className="timeline-date">{job.date}</div>
             <div className="timeline-desc">{job.description}</div>
           </div>
         ))}
       </div>
 
       {/* Education */}
-      <SectionHeading 
-        title="Education" 
+      <SectionHeading
+        title="Education"
         style={{ marginTop: 36 }}
         icon={
           <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" fill="none" stroke="currentColor">
@@ -43,22 +42,22 @@ export default function Resume() {
         }
       />
 
-      <div className="timeline" style={{ marginTop: 16 }}>
+      <div className="timeline resume-timeline">
         {resumeData.education.map((edu, idx) => (
           <div key={idx} className="timeline-item">
             <div className="timeline-dot" />
             <div className="timeline-title">{edu.title}</div>
-            <div className="timeline-company" style={{ color: 'var(--text)', fontWeight: 600 }}>{edu.company}</div>
+            <div className="timeline-company">{edu.company}</div>
           </div>
         ))}
       </div>
 
       {/* Skills & Languages Grid */}
-      <div className="resume-grid" style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
-        {/* Technical Mastery */}
-        <div className="skills-section">
-          <SectionHeading 
-            title="Technical Mastery" 
+      <div className="resume-grid">
+        {/* Technical Competencies */}
+        <div className="resume-col">
+          <SectionHeading
+            title="Technical Competencies"
             style={{ marginBottom: 20 }}
             icon={
               <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" fill="none" stroke="currentColor">
@@ -67,15 +66,17 @@ export default function Resume() {
               </svg>
             }
           />
-          {resumeData.skillsRow1.map((skill, idx) => (
-            <SkillBar key={idx} name={skill.name} percent={skill.percent} />
-          ))}
+          <div className="competency-list">
+            {resumeData.skillsRow1.map((skill, idx) => (
+              <CompetencyItem key={idx} name={skill.name} focus={skill.focus} />
+            ))}
+          </div>
         </div>
 
         {/* Language Proficiency */}
-        <div className="languages-section">
-          <SectionHeading 
-            title="Language Proficiency" 
+        <div className="resume-col">
+          <SectionHeading
+            title="Language Proficiency"
             style={{ marginBottom: 20 }}
             icon={
               <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" fill="none" stroke="currentColor">
@@ -85,10 +86,9 @@ export default function Resume() {
               </svg>
             }
           />
-          
-          <div className="language-grid" style={{ display: 'grid', gap: 12 }}>
+          <div className="language-list">
             {resumeData.skillsRow2.map((lang, idx) => (
-              <LanguageItem key={idx} language={lang.language} level={lang.level} percent={lang.percent} />
+              <LanguageItem key={idx} language={lang.language} level={lang.level} tag={lang.tag} />
             ))}
           </div>
         </div>
@@ -97,37 +97,23 @@ export default function Resume() {
   );
 }
 
-function SkillBar({ name, percent }) {
+function CompetencyItem({ name, focus }) {
   return (
-    <div className="skill-item" style={{ marginBottom: 16 }}>
-      <div className="skill-header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-        <span className="skill-name" style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '1px' }}>{name}</span>
-        <span className="skill-percent" style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)' }}>{percent}%</span>
-      </div>
-      <div className="skill-bar" style={{ height: 10, border: '1px solid var(--surface-border)', background: 'transparent', borderRadius: 'var(--radius)' }}>
-        <div className="skill-fill" style={{ width: `${percent}%`, height: '100%', background: 'var(--primary)', borderRadius: 'var(--radius)' }} />
-      </div>
+    <div className="competency-card">
+      <div className="competency-name">{name}</div>
+      <div className="competency-focus">{focus}</div>
     </div>
   );
 }
 
-function LanguageItem({ language, level, percent }) {
+function LanguageItem({ language, level, tag }) {
   return (
-    <div className="language-item" style={{ padding: '12px 16px', background: 'var(--bg)', border: '1px solid var(--surface-border)', borderRadius: 'var(--radius)', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--text)', textTransform: 'uppercase', letterSpacing: '1px' }}>{language}</div>
-          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text)', marginTop: 2, textTransform: 'uppercase' }}>{level}</div>
-        </div>
-        <div className="lang-indicator" style={{ position: 'relative', width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <svg style={{ width: 36, height: 36 }}>
-            <rect x="2" y="2" width="32" height="32" fill="transparent" stroke="var(--surface-border)" strokeWidth="1" rx="4" />
-            <rect x="2" width="32" fill="var(--primary)" height={`${(percent / 100) * 32}px`} y={`${34 - (percent / 100) * 32}`} stroke="none" rx="4" />
-          </svg>
-          <span style={{ position: 'absolute', fontSize: 10, fontWeight: 800, color: percent > 50 ? 'var(--bg)' : 'var(--text)' }}>{percent}</span>
-        </div>
+    <div className="language-item">
+      <div>
+        <div className="language-name">{language}</div>
+        <div className="language-level">{level}</div>
       </div>
+      <span className="language-tag">{tag}</span>
     </div>
   );
 }
-

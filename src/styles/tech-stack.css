@@ -1,24 +1,24 @@
-/* Tech Stack (Professional) Styles */
+/* Tech Stack Styles */
 .ts-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 28px;
 }
 
 /* Section header with number */
 .ts-section-header {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 .ts-section-num {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.06);
+  color: var(--border-subtle);
   line-height: 1;
   flex-shrink: 0;
-  min-width: 36px;
+  min-width: 32px;
   font-variant-numeric: tabular-nums;
   user-select: none;
 }
@@ -26,61 +26,49 @@
   flex: 1;
 }
 .ts-section-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.3px;
 }
-.ts-section-desc {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-top: 2px;
-  line-height: 1.5;
-}
 
-/* Skill rows */
+/* Skill rows grid */
 .ts-skills {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 6px;
-}
-
-@keyframes tsSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .ts-skill-row {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  background: var(--bg);
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--card);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
-  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
   cursor: default;
-  animation: tsSlideIn 350ms ease both;
-}
-.ts-skill-row:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: rowReveal 0.3s ease forwards;
 }
 
-/* AI accent */
+@keyframes rowReveal {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.ts-skill-row:hover {
+  background: var(--card-hover);
+  border-color: var(--primary);
+  transform: translateX(2px);
+}
+
 .ts-skill-row.ts-ai {
   border-left: 3px solid var(--primary);
-  background: linear-gradient(100deg, rgba(157, 124, 216, 0.04) 0%, var(--bg) 40%);
 }
 
-/* Icon */
+/* Icon — uniform centered square */
 .ts-skill-icon {
   width: 36px;
   height: 36px;
@@ -88,42 +76,50 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: 4px;
-  transition: background 200ms ease;
+  transition: all 150ms ease;
 }
+
 .ts-skill-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   color: var(--text-secondary);
-  transition: color 200ms ease;
+  transition: color 150ms ease;
 }
+
 .ts-skill-row:hover .ts-skill-icon {
-  background: rgba(157, 124, 216, 0.1);
+  background: rgba(155, 107, 219, 0.12);
+  border-color: rgba(155, 107, 219, 0.3);
 }
 .ts-skill-row:hover .ts-skill-icon svg {
   color: var(--primary);
 }
 
-/* Body */
+/* Skill body */
 .ts-skill-body {
   flex: 1;
   min-width: 0;
 }
+
 .ts-skill-top {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
+
 .ts-skill-name {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--text);
 }
+
 .ts-skill-exp {
   font-size: 11px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  font-weight: 500;
   margin-left: auto;
   white-space: nowrap;
 }
@@ -134,33 +130,29 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 2px 8px;
+  padding: 1px 7px;
   border-radius: 4px;
+  flex-shrink: 0;
 }
 .prof-expert {
-  color: #fbbf24;
-  background: rgba(251, 191, 36, 0.12);
-  border: 1px solid rgba(251, 191, 36, 0.25);
+  color: var(--accent);
+  background: rgba(255, 153, 92, 0.1);
+  border: 1px solid rgba(255, 153, 92, 0.25);
 }
 .prof-advanced {
-  color: #a78bfa;
-  background: rgba(167, 139, 250, 0.12);
-  border: 1px solid rgba(167, 139, 250, 0.25);
+  color: var(--primary);
+  background: rgba(155, 107, 219, 0.1);
+  border: 1px solid rgba(155, 107, 219, 0.25);
 }
 .prof-intermediate {
-  color: #2dd4bf;
-  background: rgba(45, 212, 191, 0.10);
-  border: 1px solid rgba(45, 212, 191, 0.22);
+  color: var(--text-secondary);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
 }
 .prof-beginner {
-  color: #60a5fa;
-  background: rgba(96, 165, 250, 0.10);
-  border: 1px solid rgba(96, 165, 250, 0.22);
-}
-.prof-novice {
-  color: #94a3b8;
-  background: rgba(148, 163, 184, 0.08);
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: var(--text-muted);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
 }
 
 /* Tags */
@@ -168,23 +160,23 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-top: 6px;
+  margin-top: 5px;
 }
 .ts-tag {
   font-size: 10px;
-  padding: 1px 7px;
+  padding: 1px 6px;
   border-radius: 3px;
   color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
   line-height: 1.6;
 }
-
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .ts-skill-row {
     animation: none;
+    opacity: 1;
   }
   .ts-skill-row:hover {
     transform: none;
@@ -193,6 +185,6 @@
 
 @media screen and (max-width: 768px) {
   .ts-skills {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 }

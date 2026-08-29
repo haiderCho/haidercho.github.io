@@ -4,44 +4,44 @@ import { createPortal } from 'react-dom';
 const gallerySections = [
   {
     category: 'Landscape',
-    description: 'Rivers, coastlines, and open skies.',
+    description: 'Rivers, coastlines, and open horizons captured across Bangladesh.',
     photos: [
-      { src: 'gallery/Mawa-June2021.png', title: 'Mawa Riverside', location: 'Mawa, Bangladesh', date: 'Jun 2021' },
-      { src: 'gallery/SaintMartin-Sept2019-2.jpg', title: 'Turquoise Waters', location: 'Saint Martin, Bangladesh', date: 'Sep 2019' },
-      { src: 'gallery/SaintMartin-Sept2019-3.jpg', title: 'Island Horizon', location: 'Saint Martin, Bangladesh', date: 'Sep 2019' },
-      { src: 'gallery/BayOfBangle-Sept-2019.JPG', title: 'Bay of Bengal', location: 'Bay of Bengal, Bangladesh', date: 'Sep 2019' },
-      { src: 'gallery/Meghna-Apr-2018.png', title: 'Meghna River', location: 'Meghna River, Bangladesh', date: 'Apr 2018' },
-      { src: 'gallery/IMG_20180106_170832.jpg', title: 'Golden Afternoon', location: 'Noakhali, Bangladesh', date: 'Jan 2018' },
+      { src: 'gallery/Mawa-June2021.png', title: 'Padma Riverbanks at Dusk', location: 'Mawa, Munshiganj', date: 'Jun 2021' },
+      { src: 'gallery/SaintMartin-Sept2019-2.jpg', title: 'Coral Coast & Turquoise Waters', location: "Saint Martin's Island", date: 'Sep 2019' },
+      { src: 'gallery/SaintMartin-Sept2019-3.jpg', title: 'Southern Island Horizon', location: "Saint Martin's Island", date: 'Sep 2019' },
+      { src: 'gallery/BayOfBangle-Sept-2019.JPG', title: 'Open Ocean Swell', location: 'Bay of Bengal', date: 'Sep 2019' },
+      { src: 'gallery/Meghna-Apr-2018.png', title: 'Meghna River Delta', location: 'Meghna Basin', date: 'Apr 2018' },
+      { src: 'gallery/IMG_20180106_170832.jpg', title: 'Golden Hour in Coastal Plains', location: 'Noakhali', date: 'Jan 2018' },
     ]
   },
   {
     category: 'Travel',
-    description: 'On the road — bridges, towns, and destinations.',
+    description: 'Journeys, transit routes, and regional landmarks.',
     photos: [
-      { src: 'gallery/GopalGanj-Jul2025.jpg', title: 'Gopalganj II', location: 'Gopalganj, Bangladesh', date: 'Jul 2025' },
-      { src: 'gallery/GopalGanj-Jul2022.png', title: 'Gopalganj', location: 'Gopalganj, Bangladesh', date: 'Jul 2022' },
-      { src: 'gallery/PadmaBridge-June2021 (1).jpg', title: 'Padma Bridge', location: 'Padma Bridge, Bangladesh', date: 'Jun 2021' },
-      { src: 'gallery/PadmaBridge-June2021 (2).jpg', title: 'Padma Bridge II', location: 'Padma Bridge, Bangladesh', date: 'Jun 2021' },
-      { src: 'gallery/SaintMartin-Sept2019-1.jpg', title: "Saint Martin's Island", location: 'Saint Martin, Bangladesh', date: 'Sep 2019' },
+      { src: 'gallery/GopalGanj-Jul2025.jpg', title: 'Monsoon Countryside', location: 'Gopalganj', date: 'Jul 2025' },
+      { src: 'gallery/GopalGanj-Jul2022.png', title: 'Rural Waterway & Reflections', location: 'Gopalganj', date: 'Jul 2022' },
+      { src: 'gallery/PadmaBridge-June2021 (1).jpg', title: 'Padma Multipurpose Bridge', location: 'Padma Bridge', date: 'Jun 2021' },
+      { src: 'gallery/PadmaBridge-June2021 (2).jpg', title: 'Bridge Span & River Crossing', location: 'Padma Bridge', date: 'Jun 2021' },
+      { src: 'gallery/SaintMartin-Sept2019-1.jpg', title: 'Island Shoreline Approach', location: "Saint Martin's Island", date: 'Sep 2019' },
     ]
   },
   {
     category: 'Urban',
-    description: 'City life and architecture.',
+    description: 'Architecture, cityscape moods, and neighborhood geometry.',
     photos: [
-      { src: 'gallery/Dhaka-June2021.jpg', title: 'Uttara Cityscape', location: 'Dhaka, Bangladesh', date: 'Jun 2021' },
-      { src: 'gallery/Peelkhana-Dec2013.png', title: 'Peelkhana', location: 'Dhaka, Bangladesh', date: 'Dec 2013' },
+      { src: 'gallery/Dhaka-June2021.jpg', title: 'Monsoon Skyline over North Dhaka', location: 'Uttara, Dhaka', date: 'Jun 2021' },
+      { src: 'gallery/Peelkhana-Dec2013.png', title: 'Historical Campus Perimeter', location: 'Dhanmondi, Dhaka', date: 'Dec 2013' },
     ]
   },
   {
-    category: 'Tech',
-    description: 'The workspace and tools of the trade.',
+    category: 'Systems & Builds',
+    description: 'Pipelines, telemetry dashboards, and architecture diagrams from active projects.',
     photos: [
-      { src: 'gallery/MLcodeSnippet.png', title: 'ML Project', location: 'Machine Learning Project', date: 'Dec 2025' },
-      { src: 'gallery/llm-data.png', title: 'Data Pipeline', location: 'LLM Project', date: 'Mar 2024' },
-      { src: 'gallery/llm-model.png', title: 'Model Architecture', location: 'LLM Project', date: 'Mar 2024' },
-      { src: 'gallery/llm-train.png', title: 'Training Loop', location: 'LLM Project', date: 'Mar 2024' },
-      { src: 'gallery/llm-metrics.png', title: 'Evaluation Metrics', location: 'LLM Project', date: 'Mar 2024' },
+      { src: 'gallery/MLcodeSnippet.png', title: 'Modular Training Pipeline Architecture', location: 'Applied ML Project', date: 'Dec 2025' },
+      { src: 'gallery/llm-data.png', title: 'Dataset Ingestion & Tokenizer Pipeline', location: 'LLM Fine-Tuning Workflow', date: 'Mar 2024' },
+      { src: 'gallery/llm-model.png', title: 'Transformer Model Layer Composition', location: 'Architecture Experiment', date: 'Mar 2024' },
+      { src: 'gallery/llm-train.png', title: 'Gradient Accumulation & Training Loop', location: 'Training Pipeline', date: 'Mar 2024' },
+      { src: 'gallery/llm-metrics.png', title: 'Loss Convergence & Latency Profiling', location: 'Evaluation Dashboard', date: 'Mar 2024' },
     ]
   },
 ];

@@ -16,7 +16,7 @@
 .gallery-section-num {
   font-size: 28px;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.06);
+  color: var(--border-subtle);
   line-height: 1;
   flex-shrink: 0;
   min-width: 36px;
@@ -46,8 +46,8 @@
   font-size: 11px;
   font-weight: 800;
   color: var(--text);
-  background: var(--bg);
-  border: 1px solid var(--surface-border);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
   padding: 3px 10px;
   border-radius: var(--radius);
   white-space: nowrap;
@@ -73,15 +73,19 @@
   position: relative;
   cursor: pointer;
   animation: galleryFadeIn 400ms ease both;
+  background: var(--card);
   border: 1px solid var(--surface-border);
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   width: 100%;
   aspect-ratio: 1 / 1;
+  will-change: transform;
+  contain: layout style;
 }
 
 .gallery-card:hover {
   transform: translate(-4px, -4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  border-color: rgba(155, 107, 219, 0.4);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
   z-index: 2;
 }
 
@@ -91,6 +95,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 400ms ease;
+  will-change: transform;
 }
 
 .gallery-card:hover img {
@@ -103,13 +108,14 @@
   left: 0;
   right: 0;
   padding: 24px 14px 12px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(11, 10, 15, 0.9) 0%, transparent 100%);
   display: flex;
   flex-direction: column;
   gap: 2px;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 250ms ease, transform 250ms ease;
+  will-change: opacity, transform;
 }
 
 .gallery-card:hover .gallery-card-overlay {
@@ -120,12 +126,12 @@
 .gallery-card-title {
   font-size: 13px;
   font-weight: 600;
-  color: #fff;
+  color: var(--text);
 }
 
 .gallery-card-meta {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-secondary);
 }
 
 .gallery-empty {

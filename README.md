@@ -45,7 +45,7 @@ portfolio/
 │   └── deploy.yml
 ├── public/                 # Static assets
 │   ├── gallery/            # Gallery images
-│   ├── favicon.jpg
+│   ├── favicon.svg
 │   └── robots.txt
 ├── src/
 │   ├── components/         # Reusable UI components

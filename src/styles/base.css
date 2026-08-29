@@ -1,17 +1,24 @@
 :root {
-  --bg: #0b0a0f;
-  --surface: #15131a;
-  --surface-border: rgba(255, 255, 255, 0.04);
-  --primary: #9d7cd8;
-  --secondary: #7aa2f7;
-  --accent: #ff9e64;
-  --text: #dcd7e8;
-  --text-secondary: #a098b2;
+  --bg: #0B0A0F;
+  --surface: #15131A;
+  --surface-secondary: #121117;
+  --card: #0D0C11;
+  --card-hover: #111017;
+  --surface-border: #211E28;
+  --border-subtle: #191720;
+  
+  --primary: #9B6BDB;
+  --accent: #FF995C;
+  
+  --text: #E7E3EC;
+  --text-secondary: #A39CAB;
+  --text-muted: #716B79;
+  
   --radius: 6px;
   --sidebar-width: 300px;
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI Variable', system-ui, sans-serif;
   --timing-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --glow-color: rgba(157, 124, 216, 0.2);
+  --glow-color: rgba(155, 107, 219, 0.15);
 }
 
 *, *::before, *::after {
@@ -31,7 +38,7 @@ html {
 
 body {
   font-family: var(--font);
-  background: radial-gradient(circle at 50% 0%, rgba(21, 19, 26, 1) 0%, var(--bg) 100%) no-repeat;
+  background: radial-gradient(circle at 50% 0%, #15131A 0%, var(--bg) 100%) no-repeat;
   background-attachment: fixed;
   color: var(--text);
   font-size: 15px;
@@ -41,7 +48,7 @@ body {
 }
 
 a {
-  color: var(--secondary);
+  color: var(--primary);
   text-decoration: none;
 }
 

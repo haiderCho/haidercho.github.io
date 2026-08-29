@@ -7,7 +7,8 @@ import {
   HiOutlineSquares2X2,
   HiOutlineRss,
   HiOutlinePhoto,
-  HiOutlineEnvelope
+  HiOutlineEnvelope,
+  HiOutlineXMark
 } from 'react-icons/hi2';
 
 const mainNavItems = [
@@ -18,110 +19,88 @@ const mainNavItems = [
 ];
 
 const secondaryNavItems = [
-  { name: 'Blog', icon: <HiOutlineRss /> },
-  { name: 'Gallery', icon: <HiOutlinePhoto /> },
-  { name: 'Contact', icon: <HiOutlineEnvelope /> }
+  { name: 'Blog', icon: <HiOutlineRss />, desc: 'Articles & Writeups' },
+  { name: 'Gallery', icon: <HiOutlinePhoto />, desc: 'Photographs & Shots' },
+  { name: 'Contact', icon: <HiOutlineEnvelope />, desc: 'Get in Touch' }
 ];
 
 export default function BottomNav({ activePage, setActivePage }) {
   const [showMore, setShowMore] = useState(false);
-  const [isShrunken, setIsShrunken] = useState(false);
-  
-  // Performance optimization: Use refs for scroll position and state inside scroll listener
-  // to avoid tearing down and re-binding the window scroll event listener on every scroll frame.
-  const lastScrollY = useRef(0);
-  const showMoreRef = useRef(showMore);
-  showMoreRef.current = showMore;
+  const isSecondaryActive = secondaryNavItems.some(item => item.name === activePage);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Only shrink if we've scrolled more than 50px
-      if (currentScrollY > 50) {
-        if (currentScrollY > lastScrollY.current) {
-          // Scrolling Down -> Shrink
-          setIsShrunken(true);
-        } else {
-          // Scrolling Up -> Expand
-          setIsShrunken(false);
-        }
-      } else {
-        // At the top -> Always Expand
-        setIsShrunken(false);
-      }
-      
-      lastScrollY.current = currentScrollY;
-      
-      // Close more menu on scroll
-      if (showMoreRef.current) setShowMore(false);
+      if (showMore) setShowMore(false);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [showMore]);
 
   const handleNavClick = (pageName) => {
     setActivePage(pageName);
     setShowMore(false);
-    setIsShrunken(false); // Expand when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      {/* More Menu Overlay */}
-      <div className={`bottom-more-menu ${showMore ? 'active' : ''}`}>
-        {secondaryNavItems.map((item) => (
-          <button
-            key={item.name}
-            className={`more-nav-link${activePage === item.name ? ' active' : ''}`}
-            onClick={() => handleNavClick(item.name)}
-          >
-            <span className="more-nav-icon">{item.icon}</span>
-            <span className="more-nav-label">{item.name}</span>
+      {/* Backdrop for the drawer */}
+      <div 
+        className={`bottom-nav-backdrop ${showMore ? 'active' : ''}`} 
+        onClick={() => setShowMore(false)}
+        aria-hidden={!showMore}
+      />
+
+      {/* More Menu Popover Drawer */}
+      <div className={`bottom-more-drawer ${showMore ? 'active' : ''}`} role="dialog" aria-label="More navigation links">
+        <div className="drawer-header">
+          <span className="drawer-title">More Pages</span>
+          <button className="drawer-close" onClick={() => setShowMore(false)} aria-label="Close menu">
+            <HiOutlineXMark />
           </button>
-        ))}
+        </div>
+        <div className="drawer-grid">
+          {secondaryNavItems.map((item) => (
+            <button
+              key={item.name}
+              className={`drawer-link ${activePage === item.name ? 'active' : ''}`}
+              onClick={() => handleNavClick(item.name)}
+            >
+              <span className="drawer-icon">{item.icon}</span>
+              <div className="drawer-text">
+                <span className="drawer-name">{item.name}</span>
+                <span className="drawer-desc">{item.desc}</span>
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Main Dock (Interactive Island) */}
-      <nav className={`bottom-nav theme-${activePage.toLowerCase().replace(' ', '-')} ${isShrunken ? 'shrunken' : ''}`} aria-label="Mobile Navigation">
-        {isShrunken ? (
-          /* In shrunken mode, find and show the active icon from either list */
-          <button className="bottom-nav-link active" aria-label={`Current active page: ${activePage}`}>
-            <span className="bottom-nav-icon">
-              {[...mainNavItems, ...secondaryNavItems].find(item => item.name === activePage)?.icon || <HiOutlineUserCircle />}
-            </span>
+      {/* Main Floating Dock */}
+      <nav className={`bottom-nav theme-${activePage.toLowerCase().replace(' ', '-')}`} aria-label="Mobile Navigation">
+        {mainNavItems.map((item) => (
+          <button
+            key={item.name}
+            className={`bottom-nav-link ${activePage === item.name ? 'active' : ''}`}
+            onClick={() => handleNavClick(item.name)}
+            aria-label={item.name}
+          >
+            <span className="bottom-nav-icon">{item.icon}</span>
+            <span className="bottom-nav-label">{item.name}</span>
           </button>
-        ) : (
-          /* In expanded mode, show main items + more trigger */
-          <>
-            {mainNavItems.map((item) => (
-              <button
-                key={item.name}
-                className={`bottom-nav-link${activePage === item.name ? ' active' : ''}`}
-                onClick={() => handleNavClick(item.name)}
-                aria-label={item.name}
-              >
-                <span className="bottom-nav-icon">{item.icon}</span>
-                <span className="bottom-nav-label">{item.name}</span>
-              </button>
-            ))}
-            
-            <button 
-              className={`bottom-nav-link more-trigger${showMore ? ' active' : ''}`}
-              onClick={() => setShowMore(!showMore)}
-              aria-label="More navigation options"
-              aria-expanded={showMore}
-            >
-              <span className="bottom-nav-icon"><HiOutlineSquares2X2 /></span>
-              <span className="bottom-nav-label">More</span>
-            </button>
-          </>
-        )}
+        ))}
+        
+        <button 
+          className={`bottom-nav-link more-trigger ${showMore || isSecondaryActive ? 'active' : ''}`}
+          onClick={() => setShowMore(!showMore)}
+          aria-label="More navigation options"
+          aria-expanded={showMore}
+        >
+          <span className="bottom-nav-icon"><HiOutlineSquares2X2 /></span>
+          <span className="bottom-nav-label">{isSecondaryActive ? activePage : 'More'}</span>
+        </button>
       </nav>
-
-      {/* Backdrop for the menu */}
-      {showMore && <div className="bottom-nav-backdrop" onClick={() => setShowMore(false)}></div>}
     </>
   );
 }

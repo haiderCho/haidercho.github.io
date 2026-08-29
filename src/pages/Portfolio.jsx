@@ -29,7 +29,7 @@ export default function Portfolio() {
               <div className="fragment-overlay"></div>
             </div>
 
-            {/* Brutalist Info Block (Fuses text and anchors to image) */}
+            {/* Brutalist Info Block */}
             <div className="fragment-info-block">
               <div className="fragment-title-box">
                 <span className="fragment-category">{project.category}</span>
@@ -38,13 +38,14 @@ export default function Portfolio() {
               
               <div className="fragment-data-box">
                 <p className="fragment-desc">{project.desc}</p>
+
                 <div className="fragment-tags">
-                  {project.tags.slice(0, 3).map(tag => (
+                  {project.tags.map(tag => (
                     <span key={tag} className="fragment-tag">{tag}</span>
                   ))}
                 </div>
                 <div className="fragment-cta">
-                  EXPLORE <FiArrowRight />
+                  EXPLORE REPOSITORY <FiArrowRight />
                 </div>
               </div>
             </div>

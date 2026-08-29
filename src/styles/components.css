@@ -31,7 +31,6 @@
   margin-bottom: 14px;
 }
 
-
 /* Timeline */
 .timeline {
   position: relative;
@@ -45,7 +44,7 @@
   top: 8px;
   bottom: 8px;
   width: 2px;
-  background: var(--surface-border);
+  background: var(--border-subtle);
 }
 
 .timeline-item {
@@ -65,7 +64,7 @@
   height: 12px;
   background: var(--primary);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(157, 124, 216, 0.3);
+  box-shadow: 0 0 10px rgba(155, 107, 219, 0.3);
 }
 
 .timeline-title {
@@ -75,13 +74,14 @@
 
 .timeline-company {
   font-size: 13px;
-  color: var(--text-secondary);
+  font-weight: 600;
+  color: var(--text);
 }
 
 .timeline-date {
   font-size: 13px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--text-muted);
   margin: 4px 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -93,60 +93,43 @@
   line-height: 1.6;
 }
 
-.timeline-desc span {
-  display: block;
-  margin-top: 2px;
+/* Resume Layout */
+.resume-timeline {
+  margin-top: 16px;
 }
 
-/* Skills */
-.skills-section {
-  margin-top: 36px;
+.resume-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
 }
 
-.skills-section h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--surface-border);
-}
-
-.skill-item {
-  margin-bottom: 16px;
-}
-
-.skill-header {
+.resume-col {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
+  flex-direction: column;
 }
 
-.skill-name {
-  font-size: 13px;
-  font-weight: 600;
+.competency-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.skill-percent {
-  font-size: 13px;
-  color: var(--text-secondary);
+.language-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.skill-bar {
-  width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 3px;
-  overflow: hidden;
+@media screen and (max-width: 768px) {
+  .resume-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }
 
-.skill-fill {
-  height: 100%;
-  background: var(--primary);
-  border-radius: 3px;
-  transition: width 800ms ease;
-}
-
-/* Markdown Rendering Styles */
 .markdown-body {
   color: var(--text-secondary);
   line-height: 1.8;
@@ -160,7 +143,7 @@
   font-weight: 700;
 }
 
-.markdown-body h2 { font-size: 24px; border-bottom: 1px solid var(--surface-border); padding-bottom: 8px; }
+.markdown-body h2 { font-size: 24px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
 .markdown-body h3 { font-size: 20px; }
 
 .markdown-body p { margin-bottom: 20px; }
@@ -173,16 +156,17 @@
 .markdown-body li { margin-bottom: 8px; }
 
 .markdown-body code {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 14px;
-  color: var(--secondary);
+  color: var(--accent);
 }
 
 .markdown-body pre {
-  background: #0d0c12;
+  background: var(--card);
   border: 1px solid var(--surface-border);
   padding: 20px;
   border-radius: var(--radius);
@@ -192,6 +176,7 @@
 
 .markdown-body pre code {
   background: none;
+  border: none;
   padding: 0;
   color: inherit;
   font-size: 13px;
@@ -199,7 +184,7 @@
 
 .markdown-body blockquote {
   border-left: 4px solid var(--primary);
-  background: rgba(157, 124, 216, 0.05);
+  background: rgba(155, 107, 219, 0.06);
   padding: 16px 24px;
   margin: 24px 0;
   font-style: italic;
@@ -211,7 +196,7 @@
 
 .markdown-body hr {
   border: none;
-  border-top: 1px solid var(--surface-border);
+  border-top: 1px solid var(--border-subtle);
   margin: 40px 0;
 }
 
@@ -221,11 +206,63 @@
   margin: 24px 0;
 }
 
-.loading {
-  display: flex;
-  justify-content: center;
-  padding: 40px;
+/* Resume - Competency & Language Items */
+.competency-card {
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--surface-border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius);
+}
+
+.competency-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.competency-focus {
+  font-size: 12px;
+  line-height: 1.45;
   color: var(--text-secondary);
-  font-weight: 500;
+  margin-top: 2px;
+}
+
+.language-item {
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.language-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.language-level {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.language-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent);
+  border-radius: var(--radius);
 }
 

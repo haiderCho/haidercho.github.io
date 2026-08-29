@@ -1,8 +1,12 @@
 import { contactInfo } from '../data/contactInfo';
 import { workspaceInfo } from '../data/techStack';
 import SectionHeading from '../components/SectionHeading';
-import { FiCpu, FiCompass, FiMonitor, FiBookOpen, FiBookmark, FiFilm, FiCoffee, FiHeadphones, FiGlobe, FiLayers, FiSearch, FiSliders, FiRefreshCw, FiDatabase, FiPackage, FiShield, FiTarget, FiUsers } from 'react-icons/fi';
-import { FaWindows, FaMemory, FaGamepad, FaHdd } from 'react-icons/fa';
+import { 
+  FiCompass, FiMonitor, FiCoffee, FiLayers, FiSearch, FiSliders, 
+  FiDatabase, FiPackage, FiRefreshCw, FiBookOpen, FiBookmark, FiFilm,
+  FiClock, FiCheckCircle, FiAward
+} from 'react-icons/fi';
+import { FaWindows, FaMemory, FaHdd } from 'react-icons/fa';
 import { SiIntel, SiNvidia } from 'react-icons/si';
 
 export default function About() {
@@ -22,39 +26,43 @@ export default function About() {
       {/* The Narrative */}
       <p className="bio-text">
         I&apos;m {contactInfo.name}, a {contactInfo.title} based in {contactInfo.location}. 
-        I build intelligent systems that bridge the gap between research and production, from 
-        automated training pipelines and model monitoring to semantic search engines and 
-        recommendation systems.
+        I build and deploy applied ML systems — from automated data pipelines and model training workflows to semantic search engines and recommendation backends.
       </p>
       <p className="bio-text">
-        With hands-on experience across the full ML lifecycle, data preprocessing, model 
-        development, deployment, and drift detection, my projects range from NLP-powered job 
-        matching systems to AI-driven crop recommendation platforms, all built with a focus 
-        on real-world impact and scalable architecture.
+        My work centers on bridging models in notebooks to reliable systems in production: data validation, low-latency inference, drift monitoring, and building pipelines that scale.
       </p>
 
-      {/* Sleek Highlight Ribbon */}
-      <div className="highlight-ribbon">
-        <div className="ribbon-item" style={{ animationDelay: '100ms' }}>
-          <span className="ribbon-value">+{yearsExp}</span>
-          <span className="ribbon-label">Years Experience</span>
+      {/* Polished Stats Metric Cards Grid */}
+      <div className="about-stats-grid">
+        <div className="about-stat-card">
+          <div className="stat-icon-wrap"><FiClock /></div>
+          <div className="stat-text">
+            <span className="stat-num">+{yearsExp}</span>
+            <span className="stat-title">Years Experience</span>
+          </div>
         </div>
-        <div className="ribbon-divider" />
-        <div className="ribbon-item" style={{ animationDelay: '200ms' }}>
-          <span className="ribbon-value">+6</span>
-          <span className="ribbon-label">Systems Shipped</span>
+
+        <div className="about-stat-card">
+          <div className="stat-icon-wrap"><FiCheckCircle /></div>
+          <div className="stat-text">
+            <span className="stat-num">+6</span>
+            <span className="stat-title">Systems Shipped</span>
+          </div>
         </div>
-        <div className="ribbon-divider" />
-        <div className="ribbon-item" style={{ animationDelay: '300ms' }}>
-          <span className="ribbon-value">BSc</span>
-          <span className="ribbon-label">Computer Science & Eng.</span>
+
+        <div className="about-stat-card">
+          <div className="stat-icon-wrap"><FiAward /></div>
+          <div className="stat-text">
+            <span className="stat-num">BSc</span>
+            <span className="stat-title">Computer Science & Eng.</span>
+          </div>
         </div>
       </div>
 
-      {/* Operating Principles */}
+      {/* Core Principles - Clean 3-Item Layout */}
       <SectionHeading 
-        title="Operating Principles" 
-        style={{ marginTop: 40 }}
+        title="Core Principles" 
+        style={{ marginTop: 36 }}
         icon={
           <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
             <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
@@ -66,202 +74,107 @@ export default function About() {
         }
       />
 
-      <p className="section-subtitle">
-        How I think about building systems.
-      </p>
-      
-      <div className="principles-grid">
-        <div className="principle-card" style={{ animationDelay: '100ms' }}>
-          <div className="card-header-inline">
-            <div className="principle-icon-wrapper"><FiRefreshCw /></div>
-            <h4 className="principle-title">Reproducibility is non-negotiable</h4>
+      <div className="principles-list">
+        <div className="principle-row">
+          <div className="principle-icon-wrapper"><FiDatabase /></div>
+          <div>
+            <span className="principle-name">Data quality over model complexity</span>
+            <p className="principle-summary">A simple baseline trained on clean data beats a complex architecture on noisy labels.</p>
           </div>
-          <p className="principle-desc">If it can&apos;t be rerun in 6 months, it didn&apos;t happen — data, code, config, seed, all versioned.</p>
         </div>
 
-        <div className="principle-card" style={{ animationDelay: '175ms' }}>
-          <div className="card-header-inline">
-            <div className="principle-icon-wrapper"><FiDatabase /></div>
-            <h4 className="principle-title">Data quality over model complexity</h4>
+        <div className="principle-row">
+          <div className="principle-icon-wrapper"><FiPackage /></div>
+          <div>
+            <span className="principle-name">Ship a dumb baseline first</span>
+            <p className="principle-summary">Deploy a heuristic on day one to stress-test pipelines and set a real performance floor.</p>
           </div>
-          <p className="principle-desc">A logistic regression on clean data beats a transformer trained on garbage. The ceiling is always the data.</p>
         </div>
 
-        <div className="principle-card" style={{ animationDelay: '250ms' }}>
-          <div className="card-header-inline">
-            <div className="principle-icon-wrapper"><FiPackage /></div>
-            <h4 className="principle-title">Ship a baseline first</h4>
-          </div>
-          <p className="principle-desc">A heuristic goes live before anything clever — it flushes out every assumption and sets a real performance floor.</p>
-        </div>
-
-        <div className="principle-card" style={{ animationDelay: '325ms' }}>
-          <div className="card-header-inline">
-            <div className="principle-icon-wrapper"><FiShield /></div>
-            <h4 className="principle-title">Deploy with epistemic humility</h4>
-          </div>
-          <p className="principle-desc">Every deployment is a hypothesis — shadow modes, canaries, and kill switches are how you test it without burning production.</p>
-        </div>
-
-        <div className="principle-card" style={{ animationDelay: '400ms' }}>
-          <div className="card-header-inline">
-            <div className="principle-icon-wrapper"><FiTarget /></div>
-            <h4 className="principle-title">Optimize for the outcome</h4>
-          </div>
-          <p className="principle-desc">Loss curves and F1 are proxies — the downstream business metric is what stays on the dashboard.</p>
-        </div>
-
-        <div className="principle-card" style={{ animationDelay: '475ms' }}>
-          <div className="card-header-inline">
-            <div className="principle-icon-wrapper"><FiUsers /></div>
-            <h4 className="principle-title">The system includes the users</h4>
-          </div>
-          <p className="principle-desc">The model is 20% of the system. The UI, feedback loops, and user behavior that drifts back into training — that&apos;s the rest.</p>
-        </div>
-      </div>
-
-      {/* The Workspace */}
-      <SectionHeading 
-        title="The Workspace" 
-        style={{ marginTop: 40 }}
-        icon={<FiMonitor size={20} />}
-      />
-
-      <p className="section-subtitle">
-        What I build on.
-      </p>
-
-      <div className="workspace-grid">
-        <div className="workspace-item">
-          <FaWindows />
-          <div className="workspace-item-info">
-            <span className="workspace-item-label">Operating System</span>
-            <span className="workspace-item-value">{workspaceInfo.os}</span>
-          </div>
-        </div>
-        <div className="workspace-item">
-          <SiIntel />
-          <div className="workspace-item-info">
-            <span className="workspace-item-label">Processor</span>
-            <span className="workspace-item-value">{workspaceInfo.cpu}</span>
-          </div>
-        </div>
-        <div className="workspace-item">
-          <FaMemory />
-          <div className="workspace-item-info">
-            <span className="workspace-item-label">Memory</span>
-            <span className="workspace-item-value">{workspaceInfo.ram}</span>
-          </div>
-        </div>
-         <div className="workspace-item">
-          <FaHdd />
-          <div className="workspace-item-info">
-            <span className="workspace-item-label">Storage</span>
-            <span className="workspace-item-value">{workspaceInfo.storage}</span>
-          </div>
-        </div>
-        <div className="workspace-item">
-          <SiNvidia />
-          <div className="workspace-item-info">
-            <span className="workspace-item-label">Graphics Card</span>
-            <span className="workspace-item-value">{workspaceInfo.gpu}</span>
+        <div className="principle-row">
+          <div className="principle-icon-wrapper"><FiRefreshCw /></div>
+          <div>
+            <span className="principle-name">Reproducibility is non-negotiable</span>
+            <p className="principle-summary">Configs, seeds, data splits, and weights must be versioned so runs reproduce identically.</p>
           </div>
         </div>
       </div>
 
-      {/* Current Trajectory */}
-      <SectionHeading 
-        title="Currently Exploring" 
-        style={{ marginTop: 40 }}
-        icon={<FiCompass size={20} />}
-      />
-
-      <p className="section-subtitle">
-        What I'm digging into right now.
-      </p>
-
-      <div className="trajectory-grid">
-        <div className="trajectory-card" style={{ animationDelay: '100ms' }}>
-          <div className="card-header-inline">
-            <div className="trajectory-icon-wrapper"><FiLayers /></div>
-            <h4 className="trajectory-title">Retrieval-Augmented Generation</h4>
+      {/* Current Focus & Interests in a 2-Column Clean Layout */}
+      <div className="about-split-grid">
+        <div>
+          <SectionHeading 
+            title="Currently Exploring" 
+            icon={<FiCompass size={20} />}
+          />
+          <div className="compact-list" style={{ marginTop: 16 }}>
+            <div className="compact-item">
+              <FiLayers className="compact-icon" />
+              <div>
+                <strong>Retrieval-Augmented Generation</strong>
+                <p>Hybrid retrieval (dense + sparse) for anchored LLM answers.</p>
+              </div>
+            </div>
+            <div className="compact-item">
+              <FiSearch className="compact-icon" />
+              <div>
+                <strong>Vector Search & Embeddings</strong>
+                <p>Reciprocal rank fusion (RRF) & indexing for fast semantic discovery.</p>
+              </div>
+            </div>
+            <div className="compact-item">
+              <FiSliders className="compact-icon" />
+              <div>
+                <strong>Efficient LLM Fine-Tuning</strong>
+                <p>LoRA / QLoRA adapters for domain adaptation on constrained compute.</p>
+              </div>
+            </div>
           </div>
-          <p className="trajectory-desc">Grounding generative outputs with retrieval so the model answers from facts, not vibes.</p>
         </div>
-        <div className="trajectory-card" style={{ animationDelay: '200ms' }}>
-          <div className="card-header-inline">
-            <div className="trajectory-icon-wrapper"><FiSearch /></div>
-            <h4 className="trajectory-title">Vector Search & Embeddings</h4>
+
+        <div>
+          <SectionHeading 
+            title="Beyond the Code" 
+            icon={<FiCoffee size={20} />}
+          />
+          <div className="compact-list" style={{ marginTop: 16 }}>
+            <div className="compact-item">
+              <FiBookOpen className="compact-icon" />
+              <div>
+                <strong>Literature & Philosophy</strong>
+                <p>Humayun Ahmed, Tagore, Nazrul, Dostoevsky, Nietzsche, Tolkien.</p>
+              </div>
+            </div>
+            <div className="compact-item">
+              <FiBookmark className="compact-icon" />
+              <div>
+                <strong>Manga, Comics & Light Novels</strong>
+                <p>170k+ chapters across manga/manhwa and 15k+ comic issues.</p>
+              </div>
+            </div>
+            <div className="compact-item">
+              <FiFilm className="compact-icon" />
+              <div>
+                <strong>Film, Anime & Gaming</strong>
+                <p>3k+ films, 1.9k+ anime, and story-driven RPGs (Witcher, Batman).</p>
+              </div>
+            </div>
           </div>
-          <p className="trajectory-desc">Embedding models and vector databases that make search understand meaning, not just keywords.</p>
-        </div>
-        <div className="trajectory-card" style={{ animationDelay: '300ms' }}>
-          <div className="card-header-inline">
-            <div className="trajectory-icon-wrapper"><FiSliders /></div>
-            <h4 className="trajectory-title">LLM Fine-Tuning</h4>
-          </div>
-          <p className="trajectory-desc">LoRA and QLoRA to bend large models toward specific domains without retraining from scratch.</p>
         </div>
       </div>
 
-      {/* Beyond the Code */}
-      <SectionHeading 
-        title="Beyond the Code" 
-        style={{ marginTop: 40 }}
-        icon={<FiCoffee size={20} />}
-      />
-
-      <p className="section-subtitle">
-        What I do when I'm not coding.
-      </p>
-
-      <div className="hobbies-grid">
-        <div className="hobby-card" style={{ animationDelay: '100ms' }}>
-          <div className="card-header-inline">
-            <div className="hobby-icon-wrapper"><FiBookOpen /></div>
-            <h4 className="hobby-title">Books &amp; Literature</h4>
-          </div>
-          <p className="hobby-desc">Humayun Ahmed is a 150+ book obsession. Beyond that Tagore, Nazrul, Dostoevsky, Nietzsche, Tolkien, GRRM — Bangla classics to philosophy to high fantasy.</p>
+      {/* The Workspace - Streamlined Inline Spec Bar with Icons */}
+      <div className="workspace-strip">
+        <div className="workspace-strip-label">
+          <FiMonitor />
+          <span>The Setup</span>
         </div>
-
-        <div className="hobby-card" style={{ animationDelay: '175ms' }}>
-          <div className="card-header-inline">
-            <div className="hobby-icon-wrapper hobby-icon-secondary"><FiBookmark /></div>
-            <h4 className="hobby-title">Manga, Comics &amp; Light Novels</h4>
-          </div>
-          <p className="hobby-desc">170k+ chapters across manga, manhwa, & manhua. 15k+ comic issues. Light novels for when the panels run out.</p>
-        </div>
-
-        <div className="hobby-card" style={{ animationDelay: '275ms' }}>
-          <div className="card-header-inline">
-            <div className="hobby-icon-wrapper hobby-icon-accent"><FiFilm /></div>
-            <h4 className="hobby-title">Film, TV &amp; Anime</h4>
-          </div>
-          <p className="hobby-desc">3,000+ films, 1,500+ shows, 1,900+ anime. A sucker for rich world-building and fantasy, equally drawn to brilliant, unhinged protagonists and great storytelling.</p>
-        </div>
-
-        <div className="hobby-card" style={{ animationDelay: '350ms' }}>
-          <div className="card-header-inline">
-            <div className="hobby-icon-wrapper"><FaGamepad /></div>
-            <h4 className="hobby-title">Gaming</h4>
-          </div>
-          <p className="hobby-desc">Witcher 3, Arkham City, AC2. Plus an unapologetic gacha habit for every IP I love — One Piece, DBZ, Bleach.</p>
-        </div>
-
-        <div className="hobby-card" style={{ animationDelay: '425ms' }}>
-          <div className="card-header-inline">
-            <div className="hobby-icon-wrapper hobby-icon-accent"><FiHeadphones /></div>
-            <h4 className="hobby-title">Music</h4>
-          </div>
-          <p className="hobby-desc">Bangla rock to American metal, with Japanese, Hindi, and Urdu in between. One rule: it has to hit.</p>
-        </div>
-
-        <div className="hobby-card" style={{ animationDelay: '500ms' }}>
-          <div className="card-header-inline">
-            <div className="hobby-icon-wrapper hobby-icon-secondary"><FiGlobe /></div>
-            <h4 className="hobby-title">Language Learning</h4>
-          </div>
-          <p className="hobby-desc">Currently learning Japanese — partly to read manga raws before the scanlation catches up, partly because I love learning new languages.</p>
+        <div className="workspace-strip-specs">
+          <span className="workspace-spec"><FaWindows /> <strong>OS:</strong> {workspaceInfo.os}</span>
+          <span className="workspace-spec"><SiIntel /> <strong>CPU:</strong> {workspaceInfo.cpu}</span>
+          <span className="workspace-spec"><FaMemory /> <strong>RAM:</strong> {workspaceInfo.ram}</span>
+          <span className="workspace-spec"><FaHdd /> <strong>Storage:</strong> {workspaceInfo.storage}</span>
+          <span className="workspace-spec"><SiNvidia /> <strong>GPU:</strong> {workspaceInfo.gpu}</span>
         </div>
       </div>
 

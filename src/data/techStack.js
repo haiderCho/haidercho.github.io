@@ -20,107 +20,99 @@ const exp = (startYear) => {
 export const techStack = [
   {
     category: "Languages",
-    description: "Core programming languages used across systems, AI research, and application development.",
     skills: [
-      { name: "Python", icon: SiPython, proficiency: "Expert", experience: exp(2018), tags: ["Scripting", "Automation", "ML Pipelines"] },
-      { name: "C++", icon: SiCplusplus, proficiency: "Advanced", experience: exp(2018), tags: ["Systems Programming", "Qt"] },
-      { name: "Java", icon: SiOpenjdk, proficiency: "Intermediate", experience: exp(2018), tags: ["OOP", "Backend Development"] },
-      { name: "Rust", icon: SiRust, proficiency: "Beginner", experience: exp(2025), tags: ["Memory Safety", "Concurrency"] },
-      { name: "C#", icon: SiDotnet, proficiency: "Beginner", experience: exp(2024), tags: [".NET", "Unity"] },
-      { name: "R", icon: SiR, proficiency: "Intermediate", experience: exp(2024), tags: ["Statistical Analysis", "Data Mining"] },
-      { name: "JavaScript", icon: SiJavascript, proficiency: "Advanced", experience: exp(2022), tags: ["ES6+", "Async Programming", "DOM"] },
-      { name: "TypeScript", icon: SiTypescript, proficiency: "Advanced", experience: exp(2023), tags: ["Type Safety", "Strict Mode"] },
-      { name: "PHP", icon: SiPhp, proficiency: "Intermediate", experience: exp(2022), tags: ["Laravel", "Backend"] },
-      { name: "Kotlin", icon: SiKotlin, proficiency: "Beginner", experience: exp(2025), tags: ["Android", "JVM"] },
+      { name: "Python",     icon: SiPython,     proficiency: "Core",       experience: exp(2020), tags: ["Scripting", "Automation", "ML Pipelines"] },
+      { name: "JavaScript", icon: SiJavascript, proficiency: "Proficient",     experience: exp(2022), tags: ["ES6+", "Async", "DOM"] },
+      { name: "TypeScript", icon: SiTypescript, proficiency: "Proficient",     experience: exp(2023), tags: ["Type Safety", "Strict Mode"] },
+      { name: "C++",        icon: SiCplusplus,  proficiency: "Familiar", experience: exp(2023), tags: ["Systems", "Algorithms"] },
+      { name: "Java",       icon: SiOpenjdk,    proficiency: "Familiar", experience: exp(2023), tags: ["OOP", "Backend"] },
+      { name: "R",          icon: SiR,          proficiency: "Familiar", experience: exp(2024), tags: ["Statistical Analysis"] },
+      { name: "PHP",        icon: SiPhp,        proficiency: "Familiar", experience: exp(2022), tags: ["Laravel", "Backend"] },
+      { name: "Rust",       icon: SiRust,       proficiency: "Exploring",     experience: exp(2025), tags: ["Memory Safety", "Concurrency"] },
+      { name: "C# / .NET",  icon: SiDotnet,     proficiency: "Exploring",     experience: exp(2024), tags: [".NET", "Desktop"] },
+      { name: "Kotlin",     icon: SiKotlin,     proficiency: "Exploring",     experience: exp(2025), tags: ["Android", "JVM"] },
     ]
   },
 
   {
     category: "AI / Machine Learning",
-    description: "Deep learning, computer vision, NLP, and data science frameworks.",
     skills: [
-      { name: "Pandas", icon: SiPandas, proficiency: "Expert", experience: exp(2023), tags: ["Data Analysis", "Data Wrangling"], isAI: true },
-      { name: "Scikit-Learn", icon: SiScikitlearn, proficiency: "Expert", experience: exp(2023), tags: ["Classification", "Feature Engineering"], isAI: true },
-      { name: "NumPy", icon: SiNumpy, proficiency: "Expert", experience: exp(2023), tags: ["Numerical Computing"], isAI: true },
-      { name: "PyTorch", icon: SiPytorch, proficiency: "Advanced", experience: exp(2024), tags: ["Deep Learning", "TorchVision"], isAI: true },
-      { name: "TensorFlow", icon: SiTensorflow, proficiency: "Advanced", experience: exp(2024), tags: ["Keras", "Model Training"], isAI: true },
-      { name: "OpenCV", icon: SiOpencv, proficiency: "Advanced", experience: exp(2024), tags: ["Image Processing", "Computer Vision"], isAI: true },
-      { name: "YOLOv8", icon: SiUltralytics, proficiency: "Expert", experience: exp(2024), tags: ["Object Detection", "Real-Time Vision"], isAI: true },
-      { name: "Roboflow", icon: SiRoboflow, proficiency: "Advanced", experience: exp(2025), tags: ["Dataset Management", "Annotation"], isAI: true },
-      { name: "Hugging Face", icon: SiHuggingface, proficiency: "Intermediate", experience: exp(2024), tags: ["Transformers", "NLP"], isAI: true },
-      { name: "Weights & Biases", icon: SiWeightsandbiases, proficiency: "Intermediate", experience: exp(2025), tags: ["Experiment Tracking", "Model Monitoring"], isAI: true },
+      { name: "Pandas",          icon: SiPandas,          proficiency: "Core",       experience: exp(2023), tags: ["Data Wrangling", "ETL"], isAI: true },
+      { name: "NumPy",           icon: SiNumpy,           proficiency: "Core",       experience: exp(2023), tags: ["Numerical Computing"], isAI: true },
+      { name: "Scikit-Learn",    icon: SiScikitlearn,     proficiency: "Core",       experience: exp(2023), tags: ["Classification", "Feature Engineering"], isAI: true },
+      { name: "YOLOv8",          icon: SiUltralytics,     proficiency: "Core",       experience: exp(2024), tags: ["Object Detection", "Real-Time Vision"], isAI: true },
+      { name: "PyTorch",         icon: SiPytorch,         proficiency: "Proficient",     experience: exp(2024), tags: ["Deep Learning", "TorchVision"], isAI: true },
+      { name: "TensorFlow",      icon: SiTensorflow,      proficiency: "Proficient",     experience: exp(2024), tags: ["Keras", "Model Training"], isAI: true },
+      { name: "OpenCV",          icon: SiOpencv,          proficiency: "Proficient",     experience: exp(2024), tags: ["Image Processing", "CV"], isAI: true },
+      { name: "Roboflow",        icon: SiRoboflow,        proficiency: "Proficient",     experience: exp(2025), tags: ["Dataset Mgmt", "Annotation"], isAI: true },
+      { name: "Hugging Face",    icon: SiHuggingface,     proficiency: "Familiar", experience: exp(2024), tags: ["Transformers", "NLP"], isAI: true },
+      { name: "Weights & Biases",icon: SiWeightsandbiases,proficiency: "Familiar", experience: exp(2025), tags: ["Experiment Tracking"], isAI: true },
     ]
   },
 
   {
     category: "Frontend",
-    description: "Modern web UI frameworks and styling systems.",
     skills: [
-      { name: "React", icon: SiReact, proficiency: "Advanced", experience: exp(2023), tags: ["Hooks", "Component Architecture", "SPA"] },
-      { name: "Next.js", icon: SiNextdotjs, proficiency: "Advanced", experience: exp(2024), tags: ["SSR", "App Router", "Server Components"] },
-      { name: "Tailwind CSS", icon: SiTailwindcss, proficiency: "Advanced", experience: exp(2023), tags: ["Utility-First", "Design Systems"] },
-      { name: "Bootstrap", icon: SiBootstrap, proficiency: "Advanced", experience: exp(2022), tags: ["Responsive Design", "UI Frameworks"] }
+      { name: "React",       icon: SiReact,      proficiency: "Proficient", experience: exp(2023), tags: ["Hooks", "SPA"] },
+      { name: "Next.js",     icon: SiNextdotjs,  proficiency: "Proficient", experience: exp(2024), tags: ["SSR", "App Router"] },
+      { name: "Tailwind CSS",icon: SiTailwindcss,proficiency: "Proficient", experience: exp(2023), tags: ["Utility-First"] },
+      { name: "Bootstrap",   icon: SiBootstrap,  proficiency: "Proficient", experience: exp(2022), tags: ["Responsive UI"] },
     ]
   },
 
   {
     category: "Backend & APIs",
-    description: "Server frameworks, API development, and application backends.",
     skills: [
-      { name: "Node.js", icon: SiNodedotjs, proficiency: "Advanced", experience: exp(2023), tags: ["Express", "REST APIs"] },
-      { name: "Django", icon: SiDjango, proficiency: "Intermediate", experience: exp(2024), tags: ["ORM", "REST APIs", "Admin"] },
-      { name: "Flask", icon: SiFlask, proficiency: "Advanced", experience: exp(2023), tags: ["Microservices", "APIs"] },
-      { name: "FastAPI", icon: SiFastapi, proficiency: "Advanced", experience: exp(2023), tags: ["Async APIs", "Pydantic"] },
-      { name: "Laravel", icon: SiLaravel, proficiency: "Intermediate", experience: exp(2024), tags: ["MVC", "Eloquent"] }
+      { name: "FastAPI", icon: SiFastapi,  proficiency: "Proficient",     experience: exp(2023), tags: ["Async APIs", "Pydantic"] },
+      { name: "Flask",   icon: SiFlask,    proficiency: "Proficient",     experience: exp(2023), tags: ["Microservices", "REST"] },
+      { name: "Node.js", icon: SiNodedotjs,proficiency: "Proficient",     experience: exp(2023), tags: ["Express", "REST APIs"] },
+      { name: "Django",  icon: SiDjango,   proficiency: "Familiar", experience: exp(2024), tags: ["ORM", "Admin"] },
+      { name: "Laravel", icon: SiLaravel,  proficiency: "Familiar", experience: exp(2022), tags: ["MVC", "Eloquent"] },
     ]
   },
 
   {
     category: "Databases & Caching",
-    description: "Relational DBs, NoSQL, and fast in-memory key-value stores.",
     skills: [
-      { name: "PostgreSQL", icon: SiPostgresql, proficiency: "Advanced", experience: exp(2023), tags: ["SQL", "Relational Databases"] },
-      { name: "MySQL", icon: SiMysql, proficiency: "Advanced", experience: exp(2021), tags: ["SQL", "Relational Databases"] },
-      { name: "MongoDB", icon: SiMongodb, proficiency: "Intermediate", experience: exp(2024), tags: ["NoSQL", "Document Databases"] },
-      { name: "Redis", icon: SiRedis, proficiency: "Beginner", experience: exp(2025), tags: ["In-Memory", "Caching"] }
+      { name: "PostgreSQL",icon: SiPostgresql,proficiency: "Proficient",     experience: exp(2023), tags: ["SQL", "pgvector"] },
+      { name: "MySQL",     icon: SiMysql,     proficiency: "Proficient",     experience: exp(2021), tags: ["SQL", "Relational"] },
+      { name: "MongoDB",   icon: SiMongodb,   proficiency: "Familiar", experience: exp(2024), tags: ["NoSQL", "Documents"] },
+      { name: "Redis",     icon: SiRedis,     proficiency: "Exploring",     experience: exp(2025), tags: ["Caching", "Queues"] },
     ]
   },
 
   {
     category: "DevOps & Tooling",
-    description: "Development infrastructure, containers, environments, and workflows.",
     skills: [
-      { name: "Docker", icon: SiDocker, proficiency: "Intermediate", experience: exp(2025), tags: ["Containers", "Images", "Docker Compose"] },
-      { name: "Git", icon: SiGit, proficiency: "Advanced", experience: exp(2023), tags: ["Version Control", "Branching"] },
-      { name: "GitHub", icon: SiGithub, proficiency: "Expert", experience: exp(2018), tags: ["Pull Requests", "GitHub Actions"] },
-      { name: "Postman", icon: SiPostman, proficiency: "Intermediate", experience: exp(2024), tags: ["API Testing", "Validation"] },
-      { name: "Jupyter", icon: SiJupyter, proficiency: "Expert", experience: exp(2023), tags: ["Notebooks", "Data Exploration"] },
-      { name: "Anaconda", icon: SiAnaconda, proficiency: "Intermediate", experience: exp(2024), tags: ["Conda Environments", "Dependency Management"] },
-      { name: "Pydantic", icon: SiPydantic, proficiency: "Advanced", experience: exp(2024), tags: ["Data Validation", "Schemas"] }
+      { name: "Git",      icon: SiGit,     proficiency: "Proficient",     experience: exp(2022), tags: ["Version Control"] },
+      { name: "GitHub",   icon: SiGithub,  proficiency: "Core",       experience: exp(2022), tags: ["CI/CD Actions"] },
+      { name: "Docker",   icon: SiDocker,  proficiency: "Familiar", experience: exp(2025), tags: ["Containers"] },
+      { name: "Jupyter",  icon: SiJupyter, proficiency: "Core",       experience: exp(2023), tags: ["Notebooks"] },
+      { name: "Pydantic", icon: SiPydantic,proficiency: "Proficient",     experience: exp(2024), tags: ["Validation", "Schemas"] },
+      { name: "Anaconda", icon: SiAnaconda,proficiency: "Familiar", experience: exp(2024), tags: ["Environments"] },
+      { name: "Postman",  icon: SiPostman, proficiency: "Familiar", experience: exp(2024), tags: ["API Testing"] },
     ]
   },
 
   {
     category: "Platforms & Systems",
-    description: "Operating systems, embedded platforms, and hardware environments.",
     skills: [
-      { name: "Linux", icon: SiLinux, proficiency: "Expert", experience: exp(2018), tags: ["Ubuntu", "Arch", "Debian", "Fedora", "Shell"] },
-      { name: "Windows", icon: FaWindows, proficiency: "Expert", experience: exp(2006), tags: ["PowerShell", "System Optimization"] },
-      { name: "Arduino", icon: SiArduino, proficiency: "Beginner", experience: exp(2024), tags: ["Embedded Systems", "IoT"] },
-      { name: "Raspberry Pi", icon: SiRaspberrypi, proficiency: "Intermediate", experience: exp(2024), tags: ["Edge Computing", "Linux"] }
+      { name: "Linux",        icon: SiLinux,      proficiency: "Core",       experience: exp(2022), tags: ["Ubuntu", "Arch", "Shell"] },
+      { name: "Windows",      icon: FaWindows,    proficiency: "Core",       experience: exp(2010), tags: ["PowerShell", "Admin"] },
+      { name: "Raspberry Pi", icon: SiRaspberrypi,proficiency: "Familiar", experience: exp(2024), tags: ["Edge Computing", "IoT"] },
+      { name: "Arduino",      icon: SiArduino,    proficiency: "Exploring",     experience: exp(2024), tags: ["Embedded", "IoT"] },
     ]
   },
 
   {
-    category: "Cloud, Servers & Hosting",
-    description: "Hosting platforms, web servers, and deployment infrastructure.",
+    category: "Cloud & Hosting",
     skills: [
-      { name: "cPanel", icon: SiCpanel, proficiency: "Advanced", experience: exp(2024), tags: ["Web Hosting", "Server Management"] },
-      { name: "Nginx", icon: SiNginx, proficiency: "Beginner", experience: exp(2025), tags: ["Web Server", "Reverse Proxy"] },
-      { name: "Vercel", icon: SiVercel, proficiency: "Advanced", experience: exp(2023), tags: ["Edge Functions", "Frontend Hosting"] },
-      { name: "Netlify", icon: SiNetlify, proficiency: "Advanced", experience: exp(2023), tags: ["Static Hosting", "CI/CD"] }
+      { name: "Vercel",  icon: SiVercel,  proficiency: "Proficient",     experience: exp(2023), tags: ["Edge Deploy", "Frontend"] },
+      { name: "Netlify", icon: SiNetlify, proficiency: "Proficient",     experience: exp(2023), tags: ["Static Hosting", "CI/CD"] },
+      { name: "Nginx",   icon: SiNginx,   proficiency: "Exploring",     experience: exp(2025), tags: ["Reverse Proxy"] },
+      { name: "cPanel",  icon: SiCpanel,  proficiency: "Proficient",     experience: exp(2024), tags: ["Web Hosting"] },
     ]
-  }
+  },
 ];
 
 export const workspaceInfo = {
