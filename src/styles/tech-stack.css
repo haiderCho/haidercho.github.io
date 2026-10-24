@@ -2,18 +2,18 @@
 .ts-container {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: var(--space-7);
 }
 
 /* Section header with number */
 .ts-section-header {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 .ts-section-num {
-  font-size: 24px;
+  font-size: var(--text-xl);
   font-weight: 800;
   color: var(--border-subtle);
   line-height: 1;
@@ -26,7 +26,7 @@
   flex: 1;
 }
 .ts-section-title {
-  font-size: 15px;
+  font-size: var(--text-base);
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.3px;
@@ -36,21 +36,21 @@
 .ts-skills {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .ts-skill-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
   background: var(--card);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius);
-  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+  transition: background var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
   cursor: default;
   opacity: 0;
-  animation: rowReveal 0.3s ease forwards;
+  animation: rowReveal var(--duration-normal) var(--ease-out) forwards;
 }
 
 @keyframes rowReveal {
@@ -60,7 +60,7 @@
 
 .ts-skill-row:hover {
   background: var(--card-hover);
-  border-color: var(--primary);
+  border-color: var(--primary-border);
   transform: translateX(2px);
 }
 
@@ -78,20 +78,20 @@
   flex-shrink: 0;
   background: var(--surface-secondary);
   border: 1px solid var(--border-subtle);
-  border-radius: 4px;
-  transition: all 150ms ease;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) var(--ease-out);
 }
 
 .ts-skill-icon svg {
   width: 16px;
   height: 16px;
   color: var(--text-secondary);
-  transition: color 150ms ease;
+  transition: color var(--duration-fast) var(--ease-out);
 }
 
 .ts-skill-row:hover .ts-skill-icon {
-  background: rgba(155, 107, 219, 0.12);
-  border-color: rgba(155, 107, 219, 0.3);
+  background: var(--primary-muted);
+  border-color: var(--primary-border);
 }
 .ts-skill-row:hover .ts-skill-icon svg {
   color: var(--primary);
@@ -106,18 +106,18 @@
 .ts-skill-top {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   flex-wrap: wrap;
 }
 
 .ts-skill-name {
-  font-size: 13px;
+  font-size: var(--text-sm);
   font-weight: 700;
   color: var(--text);
 }
 
 .ts-skill-exp {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--text-muted);
   font-weight: 500;
   margin-left: auto;
@@ -126,23 +126,23 @@
 
 /* Proficiency badges */
 .ts-prof-badge {
-  font-size: 10px;
+  font-size: var(--text-2xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 1px 7px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   flex-shrink: 0;
 }
 .prof-expert {
   color: var(--accent);
-  background: rgba(255, 153, 92, 0.1);
-  border: 1px solid rgba(255, 153, 92, 0.25);
+  background: var(--accent-muted);
+  border: 1px solid var(--accent-border);
 }
 .prof-advanced {
   color: var(--primary);
-  background: rgba(155, 107, 219, 0.1);
-  border: 1px solid rgba(155, 107, 219, 0.25);
+  background: var(--primary-muted);
+  border: 1px solid var(--primary-border);
 }
 .prof-intermediate {
   color: var(--text-secondary);
@@ -163,9 +163,9 @@
   margin-top: 5px;
 }
 .ts-tag {
-  font-size: 10px;
+  font-size: var(--text-2xs);
   padding: 1px 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
   color: var(--text-secondary);
   background: var(--surface-secondary);
   border: 1px solid var(--border-subtle);

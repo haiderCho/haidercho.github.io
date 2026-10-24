@@ -69,20 +69,20 @@
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
   font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 200ms ease;
-  backdrop-filter: blur(4px);
+  transition: all var(--duration-fast) var(--ease-out);
+  backdrop-filter: blur(8px);
 }
 
 .iv-close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   transform: scale(1.05);
 }
 
@@ -101,9 +101,10 @@
   max-width: 90vw;
   max-height: 80vh;
   object-fit: contain;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg);
   transform-origin: center center;
   will-change: transform;
+  border-radius: var(--radius);
 }
 
 /* Nav Arrows */
@@ -111,73 +112,73 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
   font-size: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 200ms ease;
-  backdrop-filter: blur(4px);
+  transition: all var(--duration-fast) var(--ease-out);
+  backdrop-filter: blur(8px);
   z-index: 10;
 }
 
 .iv-arrow:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-50%) scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.06);
 }
 
-.iv-arrow-left { left: 24px; padding-bottom: 4px; padding-right: 4px; }
-.iv-arrow-right { right: 24px; padding-bottom: 4px; padding-left: 4px; }
+.iv-arrow-left { left: var(--space-6); padding-bottom: 4px; padding-right: 4px; }
+.iv-arrow-right { right: var(--space-6); padding-bottom: 4px; padding-left: 4px; }
 
 /* Bottom Toolbar */
 .iv-toolbar {
   position: absolute;
-  bottom: 32px;
+  bottom: var(--space-8);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(20, 18, 24, 0.8);
-  backdrop-filter: blur(12px);
-  padding: 8px 16px;
-  border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--space-3);
+  background: rgba(20, 18, 24, 0.85);
+  backdrop-filter: blur(16px);
+  padding: 6px var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   z-index: 10;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-md);
 }
 
 .iv-tool-btn {
   background: transparent;
   border: none;
   color: #fff;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: var(--text-md);
   cursor: pointer;
-  transition: background 150ms ease;
+  transition: background var(--duration-fast) var(--ease-out);
 }
 
 .iv-tool-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .iv-zoom-label {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--text-sm);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  min-width: 44px;
+  min-width: 48px;
   text-align: center;
 }
 
