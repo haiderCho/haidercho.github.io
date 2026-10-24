@@ -316,37 +316,45 @@ export default function Gallery() {
               </span>
             </div>
 
-            <div className="gallery-masonry" role="region" aria-label={`${section.category} photo grid`}>
-              {section.photos.map((photo, pIdx) => (
-                <div
-                  key={photo.src}
-                  role="button"
-                  tabIndex={0}
-                  className="gallery-card"
-                  onClick={() => setViewerPhoto(photo)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      setViewerPhoto(photo);
-                    }
-                  }}
-                  aria-label={`View photo: ${photo.title}, ${photo.location}${photo.date ? ` (${photo.date})` : ''}`}
-                  style={{ animationDelay: `${pIdx * 60}ms` }}
-                >
-                  <img 
-                    src={photo.src} 
-                    alt={photo.title} 
-                    loading="lazy" 
-                  />
-                  <div className="gallery-card-overlay">
-                    <span className="gallery-card-title">{photo.title}</span>
-                    <span className="gallery-card-meta">
-                      {photo.location}{photo.date ? ` · ${photo.date}` : ''}
-                    </span>
+            {section.photos.length === 0 ? (
+              <div className="empty-state">
+                <div className="empty-state-icon" aria-hidden="true">📷</div>
+                <h4 className="empty-state-title">No Photos Found</h4>
+                <p className="empty-state-desc">New captures in this collection will be added soon.</p>
+              </div>
+            ) : (
+              <div className="gallery-masonry" role="region" aria-label={`${section.category} photo grid`}>
+                {section.photos.map((photo, pIdx) => (
+                  <div
+                    key={photo.src}
+                    role="button"
+                    tabIndex={0}
+                    className="gallery-card"
+                    onClick={() => setViewerPhoto(photo)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setViewerPhoto(photo);
+                      }
+                    }}
+                    aria-label={`View photo: ${photo.title}, ${photo.location}${photo.date ? ` (${photo.date})` : ''}`}
+                    style={{ animationDelay: `${pIdx * 60}ms` }}
+                  >
+                    <img 
+                      src={photo.src} 
+                      alt={photo.title} 
+                      loading="lazy" 
+                    />
+                    <div className="gallery-card-overlay">
+                      <span className="gallery-card-title">{photo.title}</span>
+                      <span className="gallery-card-meta">
+                        {photo.location}{photo.date ? ` · ${photo.date}` : ''}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </section>
         ))}
       </div>

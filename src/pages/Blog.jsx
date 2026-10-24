@@ -84,44 +84,52 @@ export default function Blog() {
         <div className="page-underline" />
       </header>
 
-      <div className="blog-list" role="feed" aria-label="Articles list">
-        {preLoadedPosts.map(post => (
-          <article 
-            key={post.id} 
-            className="blog-card"
-            tabIndex={0}
-            role="button"
-            aria-label={`Read article: ${post.title}`}
-            onClick={() => setSelectedPost(post)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setSelectedPost(post);
-              }
-            }}
-          >
-            <div className="blog-card-meta">
-              <span className="blog-category">{post.tags?.[0] || 'Article'}</span>
-              <span className="blog-dot" aria-hidden="true">•</span>
-              <span className="blog-date">{post.date}</span>
-              <span className="blog-dot" aria-hidden="true">•</span>
-              <span className="blog-read-time">{post.readTime}</span>
-            </div>
-            <h3 className="blog-card-title">{post.title}</h3>
-            <p className="blog-card-excerpt">{post.excerpt}</p>
-            <button 
-              className="blog-read-more"
+      {preLoadedPosts.length === 0 ? (
+        <div className="empty-state">
+          <div className="empty-state-icon" aria-hidden="true">📖</div>
+          <h3 className="empty-state-title">No Articles Published Yet</h3>
+          <p className="empty-state-desc">Insights, architecture write-ups, and notes will appear here soon.</p>
+        </div>
+      ) : (
+        <div className="blog-list" role="feed" aria-label="Articles list">
+          {preLoadedPosts.map(post => (
+            <article 
+              key={post.id} 
+              className="blog-card"
+              tabIndex={0}
+              role="button"
               aria-label={`Read article: ${post.title}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedPost(post);
+              onClick={() => setSelectedPost(post)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedPost(post);
+                }
               }}
             >
-              Read Article →
-            </button>
-          </article>
-        ))}
-      </div>
+              <div className="blog-card-meta">
+                <span className="blog-category">{post.tags?.[0] || 'Article'}</span>
+                <span className="blog-dot" aria-hidden="true">•</span>
+                <span className="blog-date">{post.date}</span>
+                <span className="blog-dot" aria-hidden="true">•</span>
+                <span className="blog-read-time">{post.readTime}</span>
+              </div>
+              <h3 className="blog-card-title">{post.title}</h3>
+              <p className="blog-card-excerpt">{post.excerpt}</p>
+              <button 
+                className="blog-read-more"
+                aria-label={`Read article: ${post.title}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedPost(post);
+                }}
+              >
+                Read Article →
+              </button>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

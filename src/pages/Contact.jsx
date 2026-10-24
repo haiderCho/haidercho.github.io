@@ -51,26 +51,45 @@ const getSocialIcon = (type) => {
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileName, setFileName] = useState('');
+  const [fileError, setFileError] = useState('');
   const fileInputRef = useRef(null);
   const position = [23.8103, 90.4125]; // Dhaka
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setFileName('');
-    setTimeout(() => setSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setFileError('');
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setFileName('');
+      setTimeout(() => setSubmitted(false), 4000);
+    }, 600);
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (!file.name.toLowerCase().endsWith('.pdf')) {
+        setFileError('Only PDF files are supported.');
+        setFileName('');
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        setFileError('File size exceeds 10MB limit.');
+        setFileName('');
+        return;
+      }
+      setFileError('');
       setFileName(file.name);
     }
   };
 
   const removeFile = () => {
     setFileName('');
+    setFileError('');
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -261,7 +280,12 @@ export default function Contact() {
                 <span>{fileName ? 'Change PDF' : 'Attach PDF'}</span>
               </button>
               <span id="attach-pdf-hint" className="sr-only">Optional PDF attachment up to 10MB</span>
-              {fileName && (
+              {fileError && (
+                <span className="file-error-msg" role="alert">
+                  ⚠ {fileError}
+                </span>
+              )}
+              {fileName && !fileError && (
                 <span className="attached-tag">
                   {fileName}
                   <button type="button" onClick={removeFile} aria-label={`Remove attached file ${fileName}`}>×</button>
@@ -272,12 +296,26 @@ export default function Contact() {
             <div className="form-submit-box">
               {submitted ? (
                 <span className="sent-msg" role="status" aria-live="polite">
-                  ✓ Message Sent!
+                  ✓ Message Sent! I&apos;ll get back to you soon.
                 </span>
               ) : (
-                <button type="submit" className="submit-btn">
-                  <span>Send Message</span>
-                  <FiSend aria-hidden="true" />
+                <button 
+                  type="submit" 
+                  className="submit-btn"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="spinner" aria-hidden="true" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <FiSend aria-hidden="true" />
+                    </>
+                  )}
                 </button>
               )}
             </div>
