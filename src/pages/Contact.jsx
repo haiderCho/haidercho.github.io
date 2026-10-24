@@ -153,13 +153,14 @@ export default function Contact() {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="contact-pill"
+                aria-label={`${item.name} (${item.handle}) - opens in new window`}
               >
-                <div className="pill-icon">{getSocialIcon(item.type)}</div>
+                <div className="pill-icon" aria-hidden="true">{getSocialIcon(item.type)}</div>
                 <div className="pill-body">
                   <span className="pill-name">{item.name}</span>
                   <span className="pill-handle">{item.handle}</span>
                 </div>
-                <FiExternalLink className="pill-ext" />
+                <FiExternalLink className="pill-ext" aria-hidden="true" />
               </a>
             ))}
           </div>
@@ -176,13 +177,14 @@ export default function Contact() {
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="contact-pill tracker-pill"
+                aria-label={`${item.name} tracker (${item.handle}) - opens in new window`}
               >
-                <div className="pill-icon tracker-icon">{getSocialIcon(item.type)}</div>
+                <div className="pill-icon tracker-icon" aria-hidden="true">{getSocialIcon(item.type)}</div>
                 <div className="pill-body">
                   <span className="pill-name">{item.name}</span>
                   <span className="pill-handle">{item.handle}</span>
                 </div>
-                <FiExternalLink className="pill-ext" />
+                <FiExternalLink className="pill-ext" aria-hidden="true" />
               </a>
             ))}
           </div>
@@ -195,51 +197,74 @@ export default function Contact() {
         
         <form onSubmit={handleSubmit} className="contact-form" style={{ marginTop: 16 }}>
           <div className="form-row">
-            <input 
-              type="text" 
-              placeholder="Your Name" 
-              aria-label="Your Name" 
-              required 
-              className="form-input" 
-            />
-            <input 
-              type="email" 
-              placeholder="Your Email" 
-              aria-label="Your Email" 
-              required 
-              className="form-input" 
-            />
+            <div className="form-field">
+              <label htmlFor="contact-name" className="form-label">
+                Your Name <span className="req-star" aria-hidden="true">*</span>
+              </label>
+              <input 
+                id="contact-name"
+                name="name"
+                type="text" 
+                placeholder="e.g. Alex Smith" 
+                autoComplete="name"
+                required 
+                className="form-input" 
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="contact-email" className="form-label">
+                Your Email <span className="req-star" aria-hidden="true">*</span>
+              </label>
+              <input 
+                id="contact-email"
+                name="email"
+                type="email" 
+                placeholder="e.g. alex@example.com" 
+                autoComplete="email"
+                required 
+                className="form-input" 
+              />
+            </div>
           </div>
-          <textarea 
-            placeholder="Your message..." 
-            aria-label="Your Message" 
-            required 
-            rows="3" 
-            className="form-textarea"
-          ></textarea>
+          <div className="form-field">
+            <label htmlFor="contact-message" className="form-label">
+              Your Message <span className="req-star" aria-hidden="true">*</span>
+            </label>
+            <textarea 
+              id="contact-message"
+              name="message"
+              placeholder="What would you like to discuss?" 
+              required 
+              rows="3" 
+              className="form-textarea"
+            ></textarea>
+          </div>
           
           <div className="form-bottom">
             <div className="form-attach-box">
               <input
+                id="contact-attachment"
                 type="file"
                 ref={fileInputRef}
                 accept=".pdf"
                 onChange={handleFileChange}
-                aria-label="Attach PDF document"
+                aria-label="Attach PDF document (Optional)"
                 style={{ display: 'none' }}
               />
               <button 
                 type="button" 
                 className="attach-btn" 
                 onClick={() => fileInputRef.current?.click()}
+                aria-describedby="attach-pdf-hint"
               >
-                <FiPaperclip />
+                <FiPaperclip aria-hidden="true" />
                 <span>{fileName ? 'Change PDF' : 'Attach PDF'}</span>
               </button>
+              <span id="attach-pdf-hint" className="sr-only">Optional PDF attachment up to 10MB</span>
               {fileName && (
                 <span className="attached-tag">
                   {fileName}
-                  <button type="button" onClick={removeFile} aria-label="Remove attached file">×</button>
+                  <button type="button" onClick={removeFile} aria-label={`Remove attached file ${fileName}`}>×</button>
                 </span>
               )}
             </div>
@@ -251,8 +276,8 @@ export default function Contact() {
                 </span>
               ) : (
                 <button type="submit" className="submit-btn">
-                  <span>Send</span>
-                  <FiSend />
+                  <span>Send Message</span>
+                  <FiSend aria-hidden="true" />
                 </button>
               )}
             </div>

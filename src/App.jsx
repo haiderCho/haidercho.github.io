@@ -54,22 +54,33 @@ export default function App() {
 
   return (
     <div className={`app-layout ${activePage === 'About' && windowWidth <= 768 ? 'profile-active' : ''}`}>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <div className="sidebar-wrapper">
         <Sidebar />
       </div>
-      <div className="main-content">
-        <nav className="nav" aria-label="Main Navigation">
-          {pages.map((page) => (
-            <button
-              key={page}
-              className={`nav-link${activePage === page ? ' active' : ''}`}
-              onClick={() => setActivePage(page)}
-            >
-              {page}
-            </button>
-          ))}
+      <main className="main-content" id="main-content" tabIndex="-1">
+        <nav className="nav" aria-label="Main Navigation" role="tablist">
+          {pages.map((page) => {
+            const isSelected = activePage === page;
+            const tabId = `tab-${page.toLowerCase().replace(/\s+/g, '-')}`;
+            return (
+              <button
+                key={page}
+                id={tabId}
+                role="tab"
+                aria-selected={isSelected}
+                tabIndex={isSelected ? 0 : -1}
+                className={`nav-link${isSelected ? ' active' : ''}`}
+                onClick={() => setActivePage(page)}
+              >
+                {page}
+              </button>
+            );
+          })}
         </nav>
-        <div className="page-wrapper">
+        <div className="page-wrapper" role="tabpanel" aria-labelledby={`tab-${activePage.toLowerCase().replace(/\s+/g, '-')}`}>
           <div className="page-transition-wrapper" key={activePage}>
             {renderPage()}
           </div>
@@ -77,7 +88,7 @@ export default function App() {
         <footer className="footer">
           © 2026 Nafiz Haider Chowdhury | All Rights Reserved
         </footer>
-      </div>
+      </main>
       <BottomNav activePage={activePage} setActivePage={setActivePage} />
     </div>
   );

@@ -37,7 +37,7 @@ export default function TechStack() {
                   className={`ts-skill-row ${skill.isAI ? 'ts-ai' : ''}`}
                   style={{ animationDelay: `${sIdx * 60}ms` }}
                 >
-                  <div className="ts-skill-icon">
+                  <div className="ts-skill-icon" aria-hidden="true">
                     <skill.icon />
                   </div>
 

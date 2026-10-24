@@ -6,8 +6,8 @@ export default function BlogPost({ post, onBack }) {
 
   return (
     <div className="blog-post-detail page">
-      <button className="back-button" onClick={onBack}>
-        <IoArrowBack /> Back to Blog
+      <button className="back-button" onClick={onBack} aria-label="Back to all articles">
+        <IoArrowBack aria-hidden="true" /> Back to Blog
       </button>
 
       <article className="full-post">

@@ -132,14 +132,28 @@ export default function BottomNav({ activePage, setActivePage }) {
     return () => cancelAnimationFrame(animId);
   }, [targetX]);
 
-  // Close drawer on scroll
+  const moreTriggerRef = useRef(null);
+  const drawerRef = useRef(null);
+
+  // Close drawer on scroll or Escape key
   useEffect(() => {
     const handleScroll = () => {
       if (showMore) setShowMore(false);
     };
 
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && showMore) {
+        setShowMore(false);
+        moreTriggerRef.current?.focus();
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [showMore]);
 
   const handleNavClick = (pageName) => {
@@ -167,14 +181,19 @@ export default function BottomNav({ activePage, setActivePage }) {
       {/* Backdrop for the drawer */}
       <div 
         className={`bottom-nav-backdrop ${showMore ? 'active' : ''}`} 
-        onClick={() => setShowMore(false)}
+        onClick={() => {
+          setShowMore(false);
+          moreTriggerRef.current?.focus();
+        }}
         aria-hidden={!showMore}
       />
 
       {/* Modern Popover Drawer matching the liquid dock */}
       <div 
+        ref={drawerRef}
         className={`bottom-more-drawer ${showMore ? 'active' : ''}`} 
         role="dialog" 
+        aria-modal={showMore ? "true" : undefined}
         aria-label="More navigation links"
       >
         <div className="drawer-drag-handle" aria-hidden="true" />
@@ -280,6 +299,7 @@ export default function BottomNav({ activePage, setActivePage }) {
           {/* Slot 5: More / Active Secondary Page */}
           <li className={`curved-nav-item ${activeIndex === 4 ? 'active' : ''}`}>
             <button 
+              ref={moreTriggerRef}
               className={`curved-nav-link more-trigger ${showMore ? 'open' : ''}`}
               onClick={handleMoreClick}
               aria-label={isSecondaryActive ? activePage : 'More pages'}

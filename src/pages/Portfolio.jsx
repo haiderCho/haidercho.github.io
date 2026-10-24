@@ -16,12 +16,13 @@ export default function Portfolio() {
             rel="noopener noreferrer"
             className={`fragment-card fragment-pos-${idx + 1}`}
             style={{ animationDelay: `${idx * 150}ms` }}
+            aria-label={`View repository for ${project.title} (${project.category}) - opens in new window`}
           >
             {/* Raw Image */}
             <div className="fragment-image-container">
               <img
                 src={project.image}
-                alt={project.title}
+                alt={`Screenshot and preview of ${project.title}`}
                 className="fragment-image"
                 loading="lazy"
                 style={{ objectFit: project.fit || 'contain' }}
@@ -39,13 +40,13 @@ export default function Portfolio() {
               <div className="fragment-data-box">
                 <p className="fragment-desc">{project.desc}</p>
 
-                <div className="fragment-tags">
+                <div className="fragment-tags" aria-label="Technologies used">
                   {project.tags.map(tag => (
                     <span key={tag} className="fragment-tag">{tag}</span>
                   ))}
                 </div>
                 <div className="fragment-cta">
-                  EXPLORE REPOSITORY <FiArrowRight />
+                  EXPLORE REPOSITORY <FiArrowRight aria-hidden="true" />
                 </div>
               </div>
             </div>

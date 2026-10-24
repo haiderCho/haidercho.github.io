@@ -57,6 +57,10 @@ function ImageViewer({ photo, onClose }) {
   const dragStart = useRef({ x: 0, y: 0 });
   const panStart = useRef({ x: 0, y: 0 });
   const touchStart = useRef(null);
+  const closeBtnRef = useRef(null);
+  const modalRef = useRef(null);
+  const previouslyFocusedElement = useRef(null);
+
   const [currentIndex, setCurrentIndex] = useState(() =>
     allPhotos.findIndex(p => p.src === photo.src)
   );
@@ -84,18 +88,47 @@ function ImageViewer({ photo, onClose }) {
     });
   }, []);
 
-  // Keyboard controls
+  // Keyboard controls & focus trap
   useEffect(() => {
+    previouslyFocusedElement.current = document.activeElement;
+    closeBtnRef.current?.focus();
+
     const handler = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        onClose();
+      }
       if (e.key === 'ArrowRight') goNext();
       if (e.key === 'ArrowLeft') goPrev();
       if (e.key === '+' || e.key === '=') zoomIn();
       if (e.key === '-') zoomOut();
       if (e.key === '0') resetView();
+
+      // Focus trap within modal
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
     };
+
     window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    return () => {
+      window.removeEventListener('keydown', handler);
+      if (previouslyFocusedElement.current?.focus) {
+        previouslyFocusedElement.current.focus();
+      }
+    };
   }, [onClose, goNext, goPrev, zoomIn, zoomOut, resetView]);
 
   // Lock body scroll
@@ -148,21 +181,36 @@ function ImageViewer({ photo, onClose }) {
   };
 
   return createPortal(
-    <div className="iv-backdrop" onClick={onClose}>
+    <div 
+      className="iv-backdrop" 
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="iv-title"
+      ref={modalRef}
+    >
       <div className="iv-container" onClick={e => e.stopPropagation()}>
 
         {/* Top bar */}
         <div className="iv-topbar">
           <div className="iv-info">
-            <span className="iv-title">{current.title}</span>
+            <span className="iv-title" id="iv-title">{current.title}</span>
             <span className="iv-meta">
               {current.location}{current.date ? ` · ${current.date}` : ''}
             </span>
           </div>
-          <div className="iv-counter">
+          <div className="iv-counter" aria-live="polite">
             {currentIndex + 1} / {allPhotos.length}
           </div>
-          <button className="iv-close" onClick={onClose} title="Close (Esc)">×</button>
+          <button 
+            ref={closeBtnRef}
+            className="iv-close" 
+            onClick={onClose} 
+            title="Close (Esc)"
+            aria-label="Close image viewer (Press Escape)"
+          >
+            ×
+          </button>
         </div>
 
         {/* Image area */}
@@ -189,15 +237,50 @@ function ImageViewer({ photo, onClose }) {
         </div>
 
         {/* Prev / Next arrows */}
-        <button className="iv-arrow iv-arrow-left" onClick={goPrev} title="Previous (←)">‹</button>
-        <button className="iv-arrow iv-arrow-right" onClick={goNext} title="Next (→)">›</button>
+        <button 
+          className="iv-arrow iv-arrow-left" 
+          onClick={goPrev} 
+          title="Previous (←)"
+          aria-label="Previous image (Left arrow key)"
+        >
+          ‹
+        </button>
+        <button 
+          className="iv-arrow iv-arrow-right" 
+          onClick={goNext} 
+          title="Next (→)"
+          aria-label="Next image (Right arrow key)"
+        >
+          ›
+        </button>
 
         {/* Bottom zoom bar */}
-        <div className="iv-toolbar">
-          <button className="iv-tool-btn" onClick={zoomOut} title="Zoom Out (-)">−</button>
-          <span className="iv-zoom-label">{Math.round(zoom * 100)}%</span>
-          <button className="iv-tool-btn" onClick={zoomIn} title="Zoom In (+)">+</button>
-          <button className="iv-tool-btn" onClick={resetView} title="Reset (0)">⌂</button>
+        <div className="iv-toolbar" role="toolbar" aria-label="Image zoom controls">
+          <button 
+            className="iv-tool-btn" 
+            onClick={zoomOut} 
+            title="Zoom Out (-)"
+            aria-label="Zoom out (Minus key)"
+          >
+            −
+          </button>
+          <span className="iv-zoom-label" aria-live="polite">{Math.round(zoom * 100)}%</span>
+          <button 
+            className="iv-tool-btn" 
+            onClick={zoomIn} 
+            title="Zoom In (+)"
+            aria-label="Zoom in (Plus key)"
+          >
+            +
+          </button>
+          <button 
+            className="iv-tool-btn" 
+            onClick={resetView} 
+            title="Reset (0)"
+            aria-label="Reset zoom (0 key)"
+          >
+            ⌂
+          </button>
         </div>
       </div>
     </div>,
@@ -221,22 +304,33 @@ export default function Gallery() {
 
       <div className="gallery-sections">
         {gallerySections.map((section, idx) => (
-          <section key={section.category} className="gallery-section">
+          <section key={section.category} className="gallery-section" aria-labelledby={`gallery-sec-${idx}`}>
             <div className="gallery-section-header">
-              <span className="gallery-section-num">{String(idx + 1).padStart(2, '0')}</span>
+              <span className="gallery-section-num" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
               <div className="gallery-section-text">
-                <h3 className="gallery-section-title">{section.category}</h3>
+                <h3 className="gallery-section-title" id={`gallery-sec-${idx}`}>{section.category}</h3>
                 <p className="gallery-section-desc">{section.description}</p>
               </div>
-              <span className="gallery-section-count">{section.photos.length} photos</span>
+              <span className="gallery-section-count" aria-label={`${section.photos.length} photos in ${section.category}`}>
+                {section.photos.length} photos
+              </span>
             </div>
 
-            <div className="gallery-masonry">
+            <div className="gallery-masonry" role="region" aria-label={`${section.category} photo grid`}>
               {section.photos.map((photo, pIdx) => (
                 <div
                   key={photo.src}
+                  role="button"
+                  tabIndex={0}
                   className="gallery-card"
                   onClick={() => setViewerPhoto(photo)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setViewerPhoto(photo);
+                    }
+                  }}
+                  aria-label={`View photo: ${photo.title}, ${photo.location}${photo.date ? ` (${photo.date})` : ''}`}
                   style={{ animationDelay: `${pIdx * 60}ms` }}
                 >
                   <img 

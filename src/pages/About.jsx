@@ -33,9 +33,10 @@ export default function About() {
       </p>
 
       {/* Polished Stats Metric Cards Grid */}
-      <div className="about-stats-grid">
+      {/* Polished Stats Metric Cards Grid */}
+      <div className="about-stats-grid" role="region" aria-label="Key professional metrics">
         <div className="about-stat-card">
-          <div className="stat-icon-wrap"><FiClock /></div>
+          <div className="stat-icon-wrap" aria-hidden="true"><FiClock /></div>
           <div className="stat-text">
             <span className="stat-num">+{yearsExp}</span>
             <span className="stat-title">Years Experience</span>
@@ -43,7 +44,7 @@ export default function About() {
         </div>
 
         <div className="about-stat-card">
-          <div className="stat-icon-wrap"><FiCheckCircle /></div>
+          <div className="stat-icon-wrap" aria-hidden="true"><FiCheckCircle /></div>
           <div className="stat-text">
             <span className="stat-num">+6</span>
             <span className="stat-title">Systems Shipped</span>
@@ -51,7 +52,7 @@ export default function About() {
         </div>
 
         <div className="about-stat-card">
-          <div className="stat-icon-wrap"><FiAward /></div>
+          <div className="stat-icon-wrap" aria-hidden="true"><FiAward /></div>
           <div className="stat-text">
             <span className="stat-num">BSc</span>
             <span className="stat-title">Computer Science & Eng.</span>
@@ -76,7 +77,7 @@ export default function About() {
 
       <div className="principles-list">
         <div className="principle-row">
-          <div className="principle-icon-wrapper"><FiDatabase /></div>
+          <div className="principle-icon-wrapper" aria-hidden="true"><FiDatabase /></div>
           <div>
             <span className="principle-name">Data quality over model complexity</span>
             <p className="principle-summary">A simple baseline trained on clean data beats a complex architecture on noisy labels.</p>
@@ -84,7 +85,7 @@ export default function About() {
         </div>
 
         <div className="principle-row">
-          <div className="principle-icon-wrapper"><FiPackage /></div>
+          <div className="principle-icon-wrapper" aria-hidden="true"><FiPackage /></div>
           <div>
             <span className="principle-name">Ship a dumb baseline first</span>
             <p className="principle-summary">Deploy a heuristic on day one to stress-test pipelines and set a real performance floor.</p>
@@ -92,7 +93,7 @@ export default function About() {
         </div>
 
         <div className="principle-row">
-          <div className="principle-icon-wrapper"><FiRefreshCw /></div>
+          <div className="principle-icon-wrapper" aria-hidden="true"><FiRefreshCw /></div>
           <div>
             <span className="principle-name">Reproducibility is non-negotiable</span>
             <p className="principle-summary">Configs, seeds, data splits, and weights must be versioned so runs reproduce identically.</p>
@@ -109,21 +110,21 @@ export default function About() {
           />
           <div className="compact-list" style={{ marginTop: 16 }}>
             <div className="compact-item">
-              <FiLayers className="compact-icon" />
+              <FiLayers className="compact-icon" aria-hidden="true" />
               <div>
                 <strong>Retrieval-Augmented Generation</strong>
                 <p>Hybrid retrieval (dense + sparse) for anchored LLM answers.</p>
               </div>
             </div>
             <div className="compact-item">
-              <FiSearch className="compact-icon" />
+              <FiSearch className="compact-icon" aria-hidden="true" />
               <div>
                 <strong>Vector Search & Embeddings</strong>
                 <p>Reciprocal rank fusion (RRF) & indexing for fast semantic discovery.</p>
               </div>
             </div>
             <div className="compact-item">
-              <FiSliders className="compact-icon" />
+              <FiSliders className="compact-icon" aria-hidden="true" />
               <div>
                 <strong>Efficient LLM Fine-Tuning</strong>
                 <p>LoRA / QLoRA adapters for domain adaptation on constrained compute.</p>
@@ -139,21 +140,21 @@ export default function About() {
           />
           <div className="compact-list" style={{ marginTop: 16 }}>
             <div className="compact-item">
-              <FiBookOpen className="compact-icon" />
+              <FiBookOpen className="compact-icon" aria-hidden="true" />
               <div>
                 <strong>Literature & Philosophy</strong>
                 <p>Humayun Ahmed, Tagore, Nazrul, Dostoevsky, Nietzsche, Tolkien.</p>
               </div>
             </div>
             <div className="compact-item">
-              <FiBookmark className="compact-icon" />
+              <FiBookmark className="compact-icon" aria-hidden="true" />
               <div>
                 <strong>Manga, Comics & Light Novels</strong>
                 <p>170k+ chapters across manga/manhwa and 15k+ comic issues.</p>
               </div>
             </div>
             <div className="compact-item">
-              <FiFilm className="compact-icon" />
+              <FiFilm className="compact-icon" aria-hidden="true" />
               <div>
                 <strong>Film, Anime & Gaming</strong>
                 <p>3k+ films, 1.9k+ anime, and story-driven RPGs (Witcher, Batman).</p>
@@ -164,17 +165,17 @@ export default function About() {
       </div>
 
       {/* The Workspace - Streamlined Inline Spec Bar with Icons */}
-      <div className="workspace-strip">
+      <div className="workspace-strip" role="region" aria-label="Development hardware specifications">
         <div className="workspace-strip-label">
-          <FiMonitor />
+          <FiMonitor aria-hidden="true" />
           <span>The Setup</span>
         </div>
         <div className="workspace-strip-specs">
-          <span className="workspace-spec"><FaWindows /> <strong>OS:</strong> {workspaceInfo.os}</span>
-          <span className="workspace-spec"><SiIntel /> <strong>CPU:</strong> {workspaceInfo.cpu}</span>
-          <span className="workspace-spec"><FaMemory /> <strong>RAM:</strong> {workspaceInfo.ram}</span>
-          <span className="workspace-spec"><FaHdd /> <strong>Storage:</strong> {workspaceInfo.storage}</span>
-          <span className="workspace-spec"><SiNvidia /> <strong>GPU:</strong> {workspaceInfo.gpu}</span>
+          <span className="workspace-spec"><FaWindows aria-hidden="true" /> <strong>OS:</strong> {workspaceInfo.os}</span>
+          <span className="workspace-spec"><SiIntel aria-hidden="true" /> <strong>CPU:</strong> {workspaceInfo.cpu}</span>
+          <span className="workspace-spec"><FaMemory aria-hidden="true" /> <strong>RAM:</strong> {workspaceInfo.ram}</span>
+          <span className="workspace-spec"><FaHdd aria-hidden="true" /> <strong>Storage:</strong> {workspaceInfo.storage}</span>
+          <span className="workspace-spec"><SiNvidia aria-hidden="true" /> <strong>GPU:</strong> {workspaceInfo.gpu}</span>
         </div>
       </div>
 
