@@ -399,7 +399,7 @@
   
   .fragment-card, .fragment-card:nth-child(even) {
     flex-direction: column;
-    margin-bottom: 60px;
+    margin-bottom: var(--space-8);
   }
   
   .fragment-image-container {
@@ -407,11 +407,11 @@
   }
   
   .fragment-info-block, .fragment-card:nth-child(even) .fragment-info-block {
-    width: 90%;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
-    margin-top: -30px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    margin-top: -24px;
+    box-shadow: var(--shadow-md);
   }
   
   .fragment-pos-1, .fragment-pos-2, .fragment-pos-3, .fragment-pos-4 {
@@ -421,7 +421,7 @@
   }
 
   .fragment-title-box, .fragment-card:nth-child(even) .fragment-title-box {
-    margin-top: -45px;
+    margin-top: -38px;
     align-self: flex-start;
   }
 }

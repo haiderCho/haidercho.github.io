@@ -117,15 +117,15 @@
   
   .app-layout {
     flex-direction: column;
-    padding: 20px 15px 90px;
-    padding-top: 40px !important;
+    padding: 24px 14px 96px;
+    padding-top: 32px !important;
     background: var(--bg);
   }
 
   .main-content {
     width: 100%;
     transform: none;
-    padding: 0 20px;
+    padding: 0;
   }
   
   .footer {
